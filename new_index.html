@@ -1,0 +1,2362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>H-Town Made | Audia Family Relocation Playbook</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;900&family=Playfair+Display:ital,wght@0,400;0,700;1,700&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
+    <style>
+        /* ═══════════════════════════════════════════════════
+           CARMICHAEL LYNCH / H-TOWN MADE DESIGN SYSTEM
+           Inspired by: Blue Tile Mosaics, Candy Paint,
+           Houston Informer Blackletter, NASA Matte,
+           Screwed Up Records, Be Someone Bridge
+        ═══════════════════════════════════════════════════ */
+        :root {
+            /* Updated CL Palette: deeper blacks, richer reds */
+            --deep-black: #0A0A0A;
+            --steel-blue: #03202F;
+            --h-town-blue: #1A3A4A;
+            --battle-red: #A71930;
+            --battle-red-deep: #8B1428;
+            --liberty-white: #FFFFFF;
+            --accent-gray: #C4CED4;
+            --matte-silver: #8A9BA8;
+            --candy-red: #D42145;
+            --candy-blue: #0E4D6B;
+            --tile-blue: #2E6B8A;
+            --warm-gold: #D4A843;
+            --nasa-silver: #B8C5CF;
+            --font-main: 'Montserrat', sans-serif;
+            --font-accent: 'Playfair Display', serif;
+            --font-gothic: 'UnifrakturMaguntia', cursive;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            background-color: var(--deep-black);
+            color: var(--liberty-white);
+            font-family: var(--font-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ─── HALFTONE / TEXTURE OVERLAY ─── */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle, rgba(255,255,255,0.015) 1px, transparent 1px);
+            background-size: 4px 4px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* ─── NAV DOTS ─── */
+        .nav-dots {
+            position: fixed;
+            right: 24px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 1000;
+        }
+        .dot {
+            width: 10px;
+            height: 10px;
+            border: 2px solid rgba(255,255,255,0.25);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        .dot:hover, .dot.active {
+            background: var(--candy-red);
+            border-color: var(--candy-red);
+            transform: scale(1.4);
+            box-shadow: 0 0 12px rgba(212,33,69,0.5);
+        }
+        .dot-label {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--battle-red);
+            color: white;
+            padding: 3px 10px;
+            border-radius: 2px;
+            font-size: 0.6rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        .dot:hover .dot-label { opacity: 1; }
+
+        /* ─── SECTIONS ─── */
+        section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 6% 10%;
+            position: relative;
+            z-index: 1;
+        }
+        .container { max-width: 1200px; margin: 0 auto; width: 100%; }
+
+        /* ─── BLUE TILE DIVIDER (CL Signature) ─── */
+        .tile-divider {
+            height: 6px;
+            background: repeating-linear-gradient(
+                90deg,
+                var(--tile-blue) 0px, var(--tile-blue) 20px,
+                transparent 20px, transparent 24px,
+                var(--h-town-blue) 24px, var(--h-town-blue) 44px,
+                transparent 44px, transparent 48px
+            );
+            margin: 0;
+            opacity: 0.7;
+        }
+
+        /* ─── TYPOGRAPHY ─── */
+        h1 {
+            font-weight: 900;
+            font-size: clamp(3rem, 8vw, 7rem);
+            line-height: 0.88;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            letter-spacing: -3px;
+        }
+        .red-text { color: var(--candy-red); }
+        .blue-text { color: var(--tile-blue); }
+        .gold-text { color: var(--warm-gold); }
+
+        /* Gothic H — Houston Informer Blackletter */
+        .gothic-h {
+            font-family: var(--font-gothic);
+            color: var(--candy-red);
+            font-size: 1.2em;
+        }
+
+        h2 {
+            font-family: var(--font-accent);
+            font-style: italic;
+            font-size: clamp(1.5rem, 3.5vw, 3rem);
+            margin-bottom: 1.5rem;
+            color: var(--nasa-silver);
+        }
+        h3 {
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 3px;
+            color: var(--tile-blue);
+            margin-bottom: 0.75rem;
+            font-weight: 700;
+        }
+        p {
+            font-size: 1.15rem;
+            max-width: 900px;
+            margin-bottom: 1.5rem;
+            font-weight: 300;
+            opacity: 0.9;
+        }
+        .highlight {
+            border-bottom: 3px solid var(--candy-red);
+            padding-bottom: 2px;
+            font-weight: 700;
+        }
+        .section-number {
+            font-family: var(--font-gothic);
+            font-size: 10rem;
+            color: rgba(167, 25, 48, 0.06);
+            position: absolute;
+            top: 3%;
+            right: 6%;
+            line-height: 1;
+            pointer-events: none;
+        }
+
+        /* ─── HERO ─── */
+        .hero-tag {
+            display: inline-block;
+            background: var(--battle-red);
+            color: white;
+            padding: 5px 18px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+        }
+        #hero {
+            background: linear-gradient(160deg, var(--deep-black) 0%, var(--steel-blue) 40%, var(--h-town-blue) 70%, var(--deep-black) 100%);
+        }
+        #hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; width: 100%; height: 40%;
+            background: linear-gradient(to top, var(--deep-black), transparent);
+            pointer-events: none;
+        }
+
+        /* ─── CANDY PAINT GRADIENT BACKGROUNDS ─── */
+        .bg-candy-red {
+            background: linear-gradient(135deg, var(--deep-black) 0%, rgba(167,25,48,0.12) 50%, var(--deep-black) 100%);
+        }
+        .bg-candy-blue {
+            background: linear-gradient(135deg, var(--deep-black) 0%, rgba(14,77,107,0.15) 50%, var(--deep-black) 100%);
+        }
+        .bg-nasa {
+            background: linear-gradient(180deg, var(--deep-black) 0%, rgba(26,58,74,0.2) 50%, var(--deep-black) 100%);
+        }
+        .bg-gold {
+            background: linear-gradient(135deg, var(--deep-black) 0%, rgba(212,168,67,0.08) 50%, var(--deep-black) 100%);
+        }
+
+        /* ═══════════════════════════════════════════
+           REVERSE NEGATIVE HOVER SYSTEM
+           Every info box inverts on mouseover
+        ═══════════════════════════════════════════ */
+
+        /* --- STAT BOXES --- */
+        .stat-box {
+            background: rgba(255,255,255,0.03);
+            padding: 1.5rem;
+            border-left: 4px solid var(--candy-red);
+            transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+            cursor: default;
+        }
+        .stat-box:hover {
+            background: var(--liberty-white);
+            border-left-color: var(--deep-black);
+            transform: translateY(-4px);
+            box-shadow: 0 16px 48px rgba(212,33,69,0.25);
+        }
+        .stat-box:hover .stat-label { color: var(--battle-red); }
+        .stat-box:hover .stat-value { color: var(--deep-black); }
+        .stat-box:hover .stat-detail { color: var(--steel-blue); }
+        .stat-label {
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--matte-silver);
+            margin-bottom: 0.3rem;
+            transition: color 0.35s ease;
+        }
+        .stat-value {
+            font-size: 1.4rem;
+            font-weight: 700;
+            transition: color 0.35s ease;
+        }
+        .stat-detail {
+            font-size: 0.78rem;
+            color: var(--accent-gray);
+            margin-top: 0.3rem;
+            font-weight: 300;
+            transition: color 0.35s ease;
+        }
+
+        /* --- CARD / INFO BOX --- */
+        .card {
+            background: rgba(255,255,255,0.03);
+            border-top: 4px solid var(--candy-red);
+            padding: 2rem;
+            transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+            cursor: default;
+        }
+        .card:hover {
+            background: var(--liberty-white);
+            border-top-color: var(--deep-black);
+            transform: translateY(-6px);
+            box-shadow: 0 20px 60px rgba(212,33,69,0.2);
+        }
+        .card:hover h3 { color: var(--battle-red); }
+        .card:hover .card-title { color: var(--deep-black); }
+        .card:hover .card-detail { color: var(--steel-blue); }
+        .card:hover .card-detail strong { color: var(--deep-black); }
+        .card h3 { transition: color 0.35s ease; }
+        .card-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 0.6rem;
+            transition: color 0.35s ease;
+        }
+        .card-detail {
+            font-size: 0.85rem;
+            line-height: 1.6;
+            color: var(--accent-gray);
+            margin-bottom: 0.5rem;
+            transition: color 0.35s ease;
+        }
+        .card-detail strong {
+            color: var(--liberty-white);
+            transition: color 0.35s ease;
+        }
+
+        /* --- CRITERIA ITEMS --- */
+        .criteria-item {
+            border-left: 3px solid var(--tile-blue);
+            padding: 1.2rem 1.5rem;
+            background: rgba(255,255,255,0.02);
+            transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+            cursor: default;
+        }
+        .criteria-item:hover {
+            background: var(--liberty-white);
+            border-left-color: var(--deep-black);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(46,107,138,0.2);
+        }
+        .criteria-item:hover h4 { color: var(--tile-blue); }
+        .criteria-item:hover .value { color: var(--deep-black); }
+        .criteria-item:hover .sub { color: var(--steel-blue); }
+        .criteria-item h4 {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--matte-silver);
+            margin-bottom: 0.3rem;
+            transition: color 0.35s ease;
+        }
+        .criteria-item .value {
+            font-size: 1.2rem;
+            font-weight: 700;
+            transition: color 0.35s ease;
+        }
+        .criteria-item .sub {
+            font-size: 0.8rem;
+            color: var(--accent-gray);
+            margin-top: 0.3rem;
+            font-weight: 300;
+            transition: color 0.35s ease;
+        }
+
+        /* --- PROPERTY CARDS --- */
+        .property-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.06);
+            padding: 2rem;
+            transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+            cursor: default;
+            position: relative;
+            overflow: hidden;
+        }
+        .property-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 4px;
+            background: linear-gradient(90deg, var(--candy-red), var(--tile-blue), var(--candy-red));
+            background-size: 200% 100%;
+            animation: candyShimmer 3s ease infinite;
+        }
+        @keyframes candyShimmer {
+            0%, 100% { background-position: 0% 0%; }
+            50% { background-position: 100% 0%; }
+        }
+        .property-card:hover {
+            background: var(--liberty-white);
+            border-color: var(--deep-black);
+            transform: translateY(-6px);
+            box-shadow: 0 20px 60px rgba(212,33,69,0.2);
+        }
+        .property-card:hover .prop-rank { color: var(--candy-red); }
+        .property-card:hover .prop-name { color: var(--deep-black); }
+        .property-card:hover .prop-detail { color: var(--steel-blue); }
+        .property-card:hover .prop-detail strong { color: var(--deep-black); }
+        .property-card:hover .tag { background: var(--deep-black); color: var(--liberty-white); }
+        .prop-rank {
+            font-family: var(--font-gothic);
+            font-size: 2.5rem;
+            color: rgba(167,25,48,0.2);
+            position: absolute;
+            top: 12px;
+            right: 16px;
+            transition: color 0.35s ease;
+        }
+        .prop-name {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            transition: color 0.35s ease;
+        }
+        .prop-detail {
+            font-size: 0.82rem;
+            color: var(--accent-gray);
+            margin-bottom: 0.35rem;
+            line-height: 1.5;
+            transition: color 0.35s ease;
+        }
+        .prop-detail strong {
+            color: var(--liberty-white);
+            transition: color 0.35s ease;
+        }
+
+        /* --- GOLF CARDS --- */
+        .golf-card {
+            background: rgba(212,168,67,0.04);
+            border-top: 4px solid var(--warm-gold);
+            padding: 2rem;
+            transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+            cursor: default;
+        }
+        .golf-card:hover {
+            background: var(--warm-gold);
+            border-top-color: var(--deep-black);
+            transform: translateY(-6px);
+            box-shadow: 0 20px 60px rgba(212,168,67,0.3);
+        }
+        .golf-card:hover h3 { color: var(--deep-black); }
+        .golf-card:hover .card-title { color: var(--deep-black); }
+        .golf-card:hover .card-detail { color: rgba(10,10,10,0.8); }
+        .golf-card:hover .card-detail strong { color: var(--deep-black); }
+
+        /* --- TABLE ROWS --- */
+        .comparison-table tr { transition: all 0.3s ease; }
+        .comparison-table tbody tr:hover td {
+            background: var(--liberty-white) !important;
+            color: var(--deep-black) !important;
+        }
+        .comparison-table tbody tr:hover .school-col { color: var(--battle-red) !important; }
+        .comparison-table tbody tr:hover .badge-best { background: var(--deep-black); color: var(--candy-red); }
+        .comparison-table tbody tr:hover .badge-strong { background: rgba(10,10,10,0.1); color: var(--deep-black); }
+
+        /* --- PIPELINE ROWS --- */
+        .pipeline-row {
+            transition: all 0.3s ease;
+            padding: 0.5rem 0.75rem;
+            margin: 0 -0.75rem;
+            border-radius: 3px;
+        }
+        .pipeline-row:hover {
+            background: var(--liberty-white);
+        }
+        .pipeline-row:hover .pipeline-stage { color: var(--battle-red); }
+        .pipeline-row:hover .pipeline-arrow { color: var(--deep-black); }
+        .pipeline-row:hover .pipeline-schools { color: var(--deep-black); }
+
+        /* ─── GRID SYSTEMS ─── */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        .section-title {
+            font-weight: 900;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            text-transform: uppercase;
+            letter-spacing: -2px;
+            margin-bottom: 0.5rem;
+        }
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--nasa-silver);
+            margin-bottom: 1.5rem;
+            font-weight: 300;
+        }
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 900;
+            line-height: 1;
+            margin-bottom: 0.3rem;
+        }
+
+        /* ─── TAGS ─── */
+        .tag {
+            display: inline-block;
+            padding: 4px 14px;
+            font-size: 0.6rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            margin-right: 0.5rem;
+            transition: all 0.35s ease;
+        }
+        .tag-red { background: var(--battle-red); color: white; }
+        .tag-outline { border: 1px solid rgba(255,255,255,0.15); color: var(--accent-gray); }
+        .tag-gold { background: rgba(212,168,67,0.12); color: var(--warm-gold); border: 1px solid rgba(212,168,67,0.25); }
+        .tag-blue { background: rgba(46,107,138,0.15); color: var(--tile-blue); border: 1px solid rgba(46,107,138,0.3); }
+
+        /* ─── SCHOOL PIPELINE ─── */
+        .school-pipeline {
+            margin-top: 1.5rem;
+            padding: 1.5rem 2rem;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        .pipeline-row {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 0.6rem;
+            flex-wrap: wrap;
+        }
+        .pipeline-row:last-child { margin-bottom: 0; }
+        .pipeline-stage {
+            font-size: 0.58rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--tile-blue);
+            min-width: 85px;
+            font-weight: 700;
+            transition: color 0.3s ease;
+        }
+        .pipeline-arrow { color: rgba(255,255,255,0.15); font-size: 1rem; transition: color 0.3s ease; }
+        .pipeline-schools { font-size: 0.85rem; color: var(--accent-gray); transition: color 0.3s ease; }
+
+        /* ─── COMPARISON TABLE ─── */
+        .table-wrap { overflow-x: auto; margin-top: 2rem; }
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.8rem;
+        }
+        .comparison-table th {
+            background: linear-gradient(90deg, var(--battle-red), var(--battle-red-deep));
+            color: white;
+            padding: 12px 14px;
+            text-align: left;
+            text-transform: uppercase;
+            font-size: 0.6rem;
+            letter-spacing: 2px;
+            font-weight: 700;
+        }
+        .comparison-table td {
+            padding: 12px 14px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            vertical-align: top;
+            line-height: 1.5;
+            transition: all 0.3s ease;
+        }
+        .comparison-table .school-col { font-weight: 700; white-space: nowrap; transition: color 0.3s ease; }
+        .badge {
+            display: inline-block;
+            padding: 2px 6px;
+            font-size: 0.55rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border-radius: 2px;
+            margin-left: 4px;
+            vertical-align: middle;
+            transition: all 0.3s ease;
+        }
+        .badge-best { background: var(--candy-red); color: white; }
+        .badge-strong { background: rgba(167,25,48,0.25); color: #e8a0a0; }
+        .badge-gold { background: rgba(212,168,67,0.2); color: var(--warm-gold); }
+
+        /* ─── ROBLOX TABLE ─── */
+        .roblox-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.8rem;
+            margin-top: 1.5rem;
+        }
+        .roblox-table th {
+            background: rgba(255,255,255,0.05);
+            color: var(--matte-silver);
+            padding: 10px 14px;
+            text-align: left;
+            text-transform: uppercase;
+            font-size: 0.58rem;
+            letter-spacing: 2px;
+            border-bottom: 2px solid var(--tile-blue);
+        }
+        .roblox-table td {
+            padding: 12px 14px;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+            vertical-align: top;
+            line-height: 1.5;
+            transition: all 0.3s ease;
+        }
+        .roblox-table tbody tr:hover td {
+            background: var(--liberty-white);
+            color: var(--deep-black);
+        }
+
+        /* ─── CALLOUT BOX ─── */
+        .callout-box {
+            background: linear-gradient(135deg, rgba(167,25,48,0.08), rgba(46,107,138,0.06));
+            border: 1px solid rgba(167,25,48,0.2);
+            border-left: 5px solid var(--candy-red);
+            padding: 2rem;
+            margin-top: 2rem;
+            transition: all 0.35s ease;
+            cursor: default;
+        }
+        .callout-box:hover {
+            background: var(--liberty-white);
+            border-color: var(--deep-black);
+            border-left-color: var(--candy-red);
+            box-shadow: 0 16px 50px rgba(212,33,69,0.15);
+        }
+        .callout-box:hover h3 { color: var(--battle-red); }
+        .callout-box:hover p { color: var(--deep-black); opacity: 1; }
+        .callout-box h3 { color: var(--warm-gold); font-size: 0.8rem; transition: color 0.35s ease; }
+        .callout-box p { font-size: 0.95rem; margin-bottom: 0.6rem; transition: color 0.35s ease; }
+
+        /* ─── FOOTER ─── */
+        footer {
+            padding: 4rem 10%;
+            text-align: left;
+            background: #000;
+            position: relative;
+            z-index: 1;
+        }
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%;
+            height: 6px;
+            background: repeating-linear-gradient(
+                90deg,
+                var(--candy-red) 0px, var(--candy-red) 20px,
+                transparent 20px, transparent 24px,
+                var(--tile-blue) 24px, var(--tile-blue) 44px,
+                transparent 44px, transparent 48px
+            );
+        }
+        .footer-logo { font-weight: 900; font-size: 1.3rem; letter-spacing: 1px; }
+        footer p { font-size: 0.75rem; margin-top: 1rem; opacity: 0.35; }
+
+        /* ─── MAP CONTAINERS ─── */
+        .map-container {
+            margin-top: 2rem;
+            border: 2px solid rgba(255,255,255,0.08);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+            cursor: default;
+        }
+        .map-container::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 4px;
+            background: linear-gradient(90deg, var(--candy-red), var(--tile-blue), var(--candy-red));
+            background-size: 200% 100%;
+            animation: candyShimmer 3s ease infinite;
+            z-index: 2;
+        }
+        .map-container:hover {
+            border-color: var(--candy-red);
+            box-shadow: 0 16px 50px rgba(212,33,69,0.2);
+            transform: translateY(-4px);
+        }
+        .map-container iframe {
+            width: 100%;
+            height: 350px;
+            border: none;
+            display: block;
+            filter: saturate(0.8) brightness(0.85) contrast(1.1);
+            transition: filter 0.4s ease;
+        }
+        .map-container:hover iframe {
+            filter: saturate(1) brightness(1) contrast(1);
+        }
+        .map-label {
+            position: absolute;
+            bottom: 12px;
+            left: 12px;
+            background: var(--deep-black);
+            color: var(--liberty-white);
+            padding: 4px 14px;
+            font-size: 0.6rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            z-index: 2;
+            border-left: 3px solid var(--candy-red);
+            transition: all 0.35s ease;
+        }
+        .map-container:hover .map-label {
+            background: var(--liberty-white);
+            color: var(--deep-black);
+            border-left-color: var(--deep-black);
+        }
+        .map-overview iframe {
+            height: 500px;
+        }
+        .map-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        .map-grid .map-container iframe {
+            height: 280px;
+        }
+        @media (max-width: 768px) {
+            .map-container iframe { height: 280px; }
+            .map-overview iframe { height: 350px; }
+            .map-grid .map-container iframe { height: 220px; }
+            .map-grid { grid-template-columns: 1fr; }
+        }
+
+        /* ─── ANIMATIONS ─── */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+        /* ─── TOP NAV BAR ─── */
+        .top-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1001;
+            background: linear-gradient(180deg, rgba(10,10,10,0.97) 0%, rgba(10,10,10,0.85) 100%);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(167,25,48,0.3);
+            padding: 0;
+            transition: transform 0.35s ease;
+        }
+        .top-nav-inner {
+            display: flex;
+            align-items: center;
+            max-width: 100%;
+            overflow-x: auto;
+            overflow-y: hidden;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            padding: 0 1rem;
+        }
+        .top-nav-inner::-webkit-scrollbar { display: none; }
+        .top-nav-brand {
+            font-family: var(--font-main);
+            font-weight: 900;
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--liberty-white);
+            white-space: nowrap;
+            padding: 12px 16px 12px 8px;
+            border-right: 1px solid rgba(255,255,255,0.08);
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+        .top-nav-brand .gothic-h {
+            font-family: var(--font-gothic);
+            color: var(--candy-red);
+            font-size: 0.9em;
+        }
+        .top-nav-links {
+            display: flex;
+            align-items: center;
+            gap: 0;
+            flex-shrink: 0;
+        }
+        .top-nav-link {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 12px 14px;
+            font-size: 0.55rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--matte-silver);
+            white-space: nowrap;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            background: none;
+            text-decoration: none;
+        }
+        .top-nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            background: var(--candy-red);
+            transition: width 0.3s ease;
+        }
+        .top-nav-link:hover {
+            color: var(--liberty-white);
+        }
+        .top-nav-link:hover::after {
+            width: 80%;
+        }
+        .top-nav-link.active-link {
+            color: var(--liberty-white);
+        }
+        .top-nav-link.active-link::after {
+            width: 80%;
+            background: var(--candy-red);
+        }
+        .top-nav-radio {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            border: 1.5px solid var(--matte-silver);
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+        }
+        .top-nav-link:hover .top-nav-radio {
+            border-color: var(--candy-red);
+            background: var(--candy-red);
+            box-shadow: 0 0 6px rgba(212,33,69,0.5);
+        }
+        .top-nav-link.active-link .top-nav-radio {
+            border-color: var(--candy-red);
+            background: var(--candy-red);
+            box-shadow: 0 0 6px rgba(212,33,69,0.5);
+        }
+        .top-nav-divider {
+            width: 1px;
+            height: 16px;
+            background: rgba(255,255,255,0.08);
+            flex-shrink: 0;
+        }
+
+        /* Adjust sections for fixed top nav */
+        section { scroll-margin-top: 44px; }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 768px) {
+            section { padding: 12% 6%; }
+            p { font-size: 1rem; }
+            .nav-dots { right: 8px; }
+            .section-number { font-size: 5rem; right: 3%; }
+            .stats-row { grid-template-columns: 1fr 1fr; }
+            .comparison-table, .roblox-table { font-size: 0.7rem; }
+            .comparison-table th, .comparison-table td,
+            .roblox-table th, .roblox-table td { padding: 8px 6px; }
+            .prop-rank { font-size: 1.8rem; }
+            .top-nav-link { padding: 10px 8px; font-size: 0.5rem; }
+            .top-nav-brand { font-size: 0.6rem; padding: 10px 10px 10px 6px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- TOP NAV BAR -->
+<nav class="top-nav">
+    <div class="top-nav-inner">
+        <div class="top-nav-brand" onclick="navScrollTo('#hero')"><span class="gothic-h">H</span>-Town</div>
+        <div class="top-nav-links">
+            <a class="top-nav-link active-link" onclick="navScrollTo('#hero')"><span class="top-nav-radio"></span>Home</a>
+            <div class="top-nav-divider"></div>
+            <a class="top-nav-link" onclick="navScrollTo('#texans-history')"><span class="top-nav-radio"></span>Franchise</a>
+            <div class="top-nav-divider"></div>
+            <a class="top-nav-link" onclick="navScrollTo('#context')"><span class="top-nav-radio"></span>Mission</a>
+            <div class="top-nav-divider"></div>
+            <a class="top-nav-link" onclick="navScrollTo('#schools')"><span class="top-nav-radio"></span>Schools</a>
+            <div class="top-nav-divider"></div>
+            <a class="top-nav-link" onclick="navScrollTo('#roblox')"><span class="top-nav-radio"></span>Silas</a>
+            <div class="top-nav-divider"></div>
+            <a class="top-nav-link" onclick="navScrollTo('#commute')"><span class="top-nav-radio"></span>Commutes</a>
+            <div class="top-nav-divider"></div>
+            <a class="top-nav-link" onclick="navScrollTo('#map-overview')"><span class="top-nav-radio"></span>Map</a>
+            <div class="top-nav-divider"></div>
+            <a class="top-nav-link" onclick="navScrollTo('#memorial-hood')"><span class="top-nav-radio"></span>Memorial</a>
+            <div class="top-nav-divider"></div>
+            <a class="top-nav-link" onclick="navScrollTo('#bellaire-hood')"><span class="top-nav-radio"></span>Bellaire</a>
+            <div class="top-nav-divider"></div>
+            <a class="top-nav-link" onclick="navScrollTo('#lamar-hood')"><span class="top-nav-radio"></span>Lamar</a>
+            <div class="top-nav-divider"></div>
+            <a class="top-nav-link" onclick="navScrollTo('#heights-hood')"><span class="top-nav-radio"></span>Heights</a>
+            <div class="top-nav-divider"></div>
+            <a class="top-nav-link" onclick="navScrollTo('#carnegie-hood')"><span class="top-nav-radio"></span>Carnegie</a>
+            <div class="top-nav-divider"></div>
+            <a class="top-nav-link" onclick="navScrollTo('#golf')"><span class="top-nav-radio"></span>Golf</a>
+            <div class="top-nav-divider"></div>
+            <a class="top-nav-link" onclick="navScrollTo('#ev-savings')"><span class="top-nav-radio"></span>EV</a>
+            <div class="top-nav-divider"></div>
+            <a class="top-nav-link" onclick="navScrollTo('#top10')"><span class="top-nav-radio"></span>Top 10</a>
+            <div class="top-nav-divider"></div>
+            <a class="top-nav-link" onclick="navScrollTo('#luxury-condos')"><span class="top-nav-radio"></span>High-Rise</a>
+            <div class="top-nav-divider"></div>
+            <a class="top-nav-link" onclick="navScrollTo('#compare')"><span class="top-nav-radio"></span>Compare</a>
+        </div>
+    </div>
+</nav>
+
+<!-- NAV DOTS -->
+<nav class="nav-dots">
+    <div class="dot active" onclick="navScrollTo('#hero')"><span class="dot-label">Home</span></div>
+    <div class="dot" onclick="navScrollTo('#texans-history')"><span class="dot-label">Know the Franchise</span></div>
+    <div class="dot" onclick="navScrollTo('#context')"><span class="dot-label">Mission</span></div>
+    <div class="dot" onclick="navScrollTo('#schools')"><span class="dot-label">Schools</span></div>
+    <div class="dot" onclick="navScrollTo('#roblox')"><span class="dot-label">Silas Pipeline</span></div>
+    <div class="dot" onclick="navScrollTo('#commute')"><span class="dot-label">Commutes</span></div>
+    <div class="dot" onclick="navScrollTo('#map-overview')"><span class="dot-label">Map</span></div>
+    <div class="dot" onclick="navScrollTo('#memorial-hood')"><span class="dot-label">Memorial</span></div>
+    <div class="dot" onclick="navScrollTo('#bellaire-hood')"><span class="dot-label">Bellaire</span></div>
+    <div class="dot" onclick="navScrollTo('#lamar-hood')"><span class="dot-label">Lamar</span></div>
+    <div class="dot" onclick="navScrollTo('#heights-hood')"><span class="dot-label">Heights</span></div>
+    <div class="dot" onclick="navScrollTo('#carnegie-hood')"><span class="dot-label">Carnegie</span></div>
+    <div class="dot" onclick="navScrollTo('#golf')"><span class="dot-label">Golf</span></div>
+    <div class="dot" onclick="navScrollTo('#ev-savings')"><span class="dot-label">EV Savings</span></div>
+    <div class="dot" onclick="navScrollTo('#top10')"><span class="dot-label">Top 10</span></div>
+    <div class="dot" onclick="navScrollTo('#luxury-condos')"><span class="dot-label">High-Rise</span></div>
+    <div class="dot" onclick="navScrollTo('#compare')"><span class="dot-label">Compare</span></div>
+</nav>
+
+<!-- ════════════════════════════════════ -->
+<!--  1. HERO                            -->
+<!-- ════════════════════════════════════ -->
+<section id="hero">
+    <div class="container">
+        <div class="hero-tag"><span class="gothic-h" style="font-size:0.9rem; color: var(--liberty-white);">H</span>-Town Made // Audia Family Playbook</div>
+        <h1><span class="gothic-h" style="font-size:0.85em;">H</span>OUSTON<br>RELOCATION:<br><span class="red-text">THE TEXANS<br>ERA.</span></h1>
+        <h2>A Living Playbook for Melissa, Brian &amp; Silas</h2>
+        <p>You're about to join the <span class="highlight">Front Office</span> of the Houston Texans. This guide maps our family's best neighborhoods — optimized for your commute to NRG, Silas's path to a software engineering career, Brian's golf sanctuary, and a home that fits how we live.</p>
+        <p style="font-size:0.85rem; color: var(--matte-silver); font-style:italic;">Design inspired by the Carmichael Lynch "H-Town Made" identity system — Blue Tile mosaics, candy paint, NASA matte, and the Houston Informer blackletter.</p>
+    </div>
+</section>
+
+<div class="tile-divider"></div>
+
+<!-- ════════════════════════════════════ -->
+<div class="tile-divider"></div>
+
+<!-- ════════════════════════════════════ -->
+<!--  00. TEXANS HISTORY & INTERVIEW PREP -->
+<!-- ════════════════════════════════════ -->
+<section id="texans-history">
+    <span class="section-number">00</span>
+    <div class="container">
+        <h3>Know the Franchise</h3>
+        <h1 style="font-size: clamp(2.2rem, 6vw, 4.5rem);"><span class="gothic-h">H</span>OUSTON TEXANS:<br><span class="red-text">THE FULL STORY</span></h1>
+        <p>Everything Melissa needs to know before sitting down with President Mike Tomon. From the heartbreak of losing the Oilers to the rise of a new franchise — and the people who built it.</p>
+
+        <div class="grid-2 fade-in" style="margin-top: 2rem;">
+            <div class="card">
+                <h3>The Houston Oilers — Where It Started</h3>
+                <div class="card-detail"><strong>Founded 1960</strong> by Bud Adams as a charter AFL franchise</div>
+                <div class="card-detail"><strong>Glory:</strong> Won the first two AFL Championships (1960, 1961)</div>
+                <div class="card-detail"><strong>Earl Campbell Era (1978):</strong> Heisman winner, Rookie of the Year, "Luv Ya Blue" phenomenon</div>
+                <div class="card-detail"><strong>Warren Moon Era (1984-1993):</strong> Run and Shoot offense, 7 consecutive Pro Bowls</div>
+                <div class="card-detail"><strong>The Heartbreak:</strong> Bud Adams relocated the team to Tennessee after 1996 season over stadium disputes</div>
+                <div class="card-detail"><strong>Void:</strong> Became Tennessee Oilers (1997), then Tennessee Titans (1999) — Houston left without NFL football 5 years</div>
+            </div>
+            <div class="card">
+                <h3>Bob McNair — The Man Who Brought Football Back</h3>
+                <div class="card-detail"><strong>Robert C. McNair</strong> paid $700M for an NFL expansion franchise in 1999</div>
+                <div class="card-detail"><strong>October 6, 1999:</strong> NFL owners voted unanimously for Houston team #32</div>
+                <div class="card-detail"><strong>September 6, 2000:</strong> Named "Houston Texans"</div>
+                <div class="card-detail"><strong>NRG Stadium:</strong> Opened 2002, $474M — first retractable-roof in NFL</div>
+                <div class="card-detail"><strong>Super Bowls:</strong> XXXVIII (2004), LI (2017) hosted at NRG</div>
+                <div class="card-detail"><strong>Legacy:</strong> Passed away Nov 23, 2018 — transformative figure for Houston</div>
+            </div>
+            <div class="card">
+                <h3>The McNair Family — Current Ownership</h3>
+                <div class="card-detail"><strong>Janice McNair:</strong> Principal owner after Bob's passing</div>
+                <div class="card-detail"><strong>Cal McNair:</strong> CEO Jan 2019, Principal owner March 2024</div>
+                <div class="card-detail"><strong>Vision:</strong> New training facility in NW Harris County</div>
+                <div class="card-detail"><strong>Philanthropy:</strong> Janice continues Robert and Janice McNair Foundation</div>
+            </div>
+            <div class="card">
+                <h3>Key Players — Franchise Icons</h3>
+                <div class="card-detail"><strong>David Carr:</strong> First pick (2002), #1 overall</div>
+                <div class="card-detail"><strong>Andre Johnson:</strong> All-time franchise leader in receptions/yards</div>
+                <div class="card-detail"><strong>Arian Foster:</strong> 1,616 rushing yards in 2010 (undrafted record)</div>
+                <div class="card-detail"><strong>J.J. Watt:</strong> 3x DPOY, most iconic Texan, Hurricane Harvey hero</div>
+                <div class="card-detail"><strong>DeAndre Hopkins:</strong> Elite WR, 104 rec, 1,165 yards peak seasons</div>
+                <div class="card-detail"><strong>DeShaun Watson:</strong> Traded to Cleveland for 3 1st-rounders + (2022)</div>
+                <div class="card-detail"><strong>C.J. Stroud:</strong> 2023 #2 pick, Offensive ROTY, AFC South champion</div>
+                <div class="card-detail"><strong>Will Anderson Jr.:</strong> 2023 Defensive ROTY, foundation piece</div>
+            </div>
+            <div class="card">
+                <h3>Franchise Milestones</h3>
+                <div class="card-detail"><strong>2002:</strong> Beat Dallas 19-10 in first game (Sept 8)</div>
+                <div class="card-detail"><strong>2011:</strong> First AFC South title, first playoff win (J.J. Watt rookie)</div>
+                <div class="card-detail"><strong>2017:</strong> Super Bowl LI at NRG (Patriots 28-3 comeback)</div>
+                <div class="card-detail"><strong>2023:</strong> DeMeco Ryans era — Stroud + Will Anderson dual ROTY</div>
+                <div class="card-detail"><strong>2024:</strong> Second consecutive playoff appearance</div>
+                <div class="card-detail"><strong>2025:</strong> Beat Steelers 30-6 AFC Wild Card — first road playoff win</div>
+            </div>
+            <div class="card" style="border-top: 4px solid var(--warm-gold);">
+                <h3 style="color: var(--warm-gold);">Mike Tomon — New President</h3>
+                <div class="card-detail"><strong>Appointed:</strong> January 27, 2025</div>
+                <div class="card-detail"><strong>Georgetown:</strong> Alum, former Hoyas football</div>
+                <div class="card-detail"><strong>Career:</strong> Suns → Bobcats → Cavaliers → AEG → Legends → Texans</div>
+                <div class="card-detail"><strong>20+ years:</strong> Sports & entertainment leadership</div>
+                <div class="card-detail"><strong>Awards:</strong> SBJ "40 Under 40" (2015); Dallas Top 500 (2024)</div>
+                <div class="card-detail"><strong>Oversees:</strong> All business ops — marketing, tickets, sponsorship, community, legal, HR</div>
+                <div class="card-detail"><strong>Leading:</strong> NW Harris County training facility project</div>
+                <div class="card-detail"><strong>Expertise:</strong> Stadium development, global partnerships</div>
+            </div>
+        </div>
+
+        <div class="callout-box fade-in" style="margin-top: 2rem; border-left: 4px solid var(--warm-gold);">
+            <h3 style="color: var(--warm-gold);">Conversation Starters for Melissa</h3>
+            <p><strong>New training facility:</strong> Vision and timeline for NW Harris County project?</p>
+            <p style="margin-top: 0.5rem;"><strong>Legends/AEG background:</strong> How do global partnerships shape Texans strategy?</p>
+            <p style="margin-top: 0.5rem;"><strong>Georgetown connection:</strong> What culture is he building in Houston?</p>
+            <p style="margin-top: 0.5rem;"><strong>CJ Stroud era:</strong> Where is this team in 3 years?</p>
+            <p style="margin-top: 0.5rem;"><strong>Operations drives winning:</strong> How does business side support player development?</p>
+        </div>
+    </div>
+</section>
+
+<!--  2. THE MISSION                     -->
+<!-- ════════════════════════════════════ -->
+<section id="context">
+    <span class="section-number">01</span>
+    <div class="container">
+        <h3>The Mission</h3>
+        <h2>Family Goals &amp; the Roblox Inspiration</h2>
+        <p>Every decision traces back to three people: <span class="highlight">Melissa's career</span> at NRG, <span class="highlight">Silas's trajectory</span> toward computer science — inspired by his brother at Roblox — and <span class="highlight">Brian's lifestyle</span> built around a 1.6 handicap and an IAH travel schedule.</p>
+
+        <div class="grid-3 fade-in">
+            <div class="criteria-item">
+                <h4>Melissa</h4>
+                <div class="value">Texans Executive</div>
+                <div class="sub">Incoming role at NRG Stadium. Short commute is the #1 priority.</div>
+            </div>
+            <div class="criteria-item">
+                <h4>Brian</h4>
+                <div class="value">Executive Coach</div>
+                <div class="sub">1.6 handicap. Frequent traveler from IAH. Memorial Park Golf Course as home base.</div>
+            </div>
+            <div class="criteria-item">
+                <h4>Silas</h4>
+                <div class="value">4th Grader — Future Engineer</div>
+                <div class="sub">CS/Coding passion. Following his brother — a computer engineer at Roblox.</div>
+            </div>
+            <div class="criteria-item">
+                <h4>Budget</h4>
+                <div class="value">$500K – $800K</div>
+                <div class="sub">Luxury condo, modern townhome, or updated cottage — lock-and-leave preferred.</div>
+            </div>
+            <div class="criteria-item">
+                <h4>Melissa → NRG</h4>
+                <div class="value">Short Commute</div>
+                <div class="sub">Closer to NRG = better. Bellaire/West U/Museum District ideal.</div>
+            </div>
+            <div class="criteria-item">
+                <h4>Brian → IAH</h4>
+                <div class="value">Airport Access</div>
+                <div class="sub">Hardy Toll Road corridor. Heights/Carnegie zones best for IAH.</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="tile-divider"></div>
+
+<!-- ════════════════════════════════════ -->
+<!--  3. SCHOOL CHOICE                   -->
+<!-- ════════════════════════════════════ -->
+<section id="schools">
+    <span class="section-number">02</span>
+    <div class="container">
+        <h3>The School Choice</h3>
+        <h1 style="font-size: clamp(2.2rem, 5.5vw, 4.5rem);">CHOOSING<br><span class="red-text">SILAS'S PATH</span></h1>
+        <p>In Houston, the <span class="highlight">school zone defines the neighborhood</span>. Five target high schools — each with a distinct CS/tech strength. HISD's Open Enrollment gives Silas magnet access beyond zoning.</p>
+
+        <div class="table-wrap fade-in">
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Target High School</th>
+                        <th>Zoned Elementary</th>
+                        <th>Zoned Middle</th>
+                        <th>Tech / CS Focus</th>
+                        <th>Magnet Option</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="school-col">Memorial High <span class="badge badge-strong">SBISD</span></td>
+                        <td>Memorial, Frostwood, Bunker Hill</td>
+                        <td>Memorial MS, Laney MS</td>
+                        <td>Software Development Track</td>
+                        <td>Must be zoned to SBISD</td>
+                    </tr>
+                    <tr>
+                        <td class="school-col">Bellaire High <span class="badge badge-strong">HISD</span></td>
+                        <td>Horn, Condit, Lovett</td>
+                        <td>Pin Oak, Meyerland</td>
+                        <td>Deep Java &amp; Python → CS III</td>
+                        <td>World Languages Magnet</td>
+                    </tr>
+                    <tr>
+                        <td class="school-col">Lamar High <span class="badge badge-strong">HISD</span></td>
+                        <td>West U, Poe, River Oaks</td>
+                        <td>Pershing, Lanier</td>
+                        <td>Cybersecurity &amp; Certifications</td>
+                        <td>Business Admin Magnet</td>
+                    </tr>
+                    <tr>
+                        <td class="school-col">Heights High <span class="badge badge-strong">HISD</span></td>
+                        <td>Harvard, Field, Travis</td>
+                        <td>Hogg, Hamilton</td>
+                        <td>Robotics &amp; Electronics Labs</td>
+                        <td>Computer Technology Magnet</td>
+                    </tr>
+                    <tr>
+                        <td class="school-col">Carnegie Vanguard <span class="badge badge-gold">GT</span></td>
+                        <td>N/A — Magnet only</td>
+                        <td>N/A</td>
+                        <td>AP CS #1 in TX — Elite Theory</td>
+                        <td>Must qualify G/T</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<div class="tile-divider"></div>
+
+<!-- ════════════════════════════════════ -->
+<!--  4. ROBLOX PIPELINE                 -->
+<!-- ════════════════════════════════════ -->
+<section id="roblox">
+    <span class="section-number">03</span>
+    <div class="container">
+        <h3>Future Software Engineer Track</h3>
+        <h1 style="font-size: clamp(2.2rem, 5.5vw, 4.5rem);">SILAS'S<br><span class="red-text">ROBLOX</span><br>PIPELINE</h1>
+        <p>With his brother building at Roblox, Silas needs a school that teaches <span class="highlight">software architecture, game engine logic, and competitive robotics</span>. Here's how each maps to a "Roblox Engineer" trajectory.</p>
+
+        <div class="table-wrap fade-in">
+            <table class="roblox-table">
+                <thead>
+                    <tr>
+                        <th>High School</th>
+                        <th>Middle Feeder</th>
+                        <th>Roblox Engineer Alignment</th>
+                        <th>Extracurricular Edge</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="font-weight:700;">Heights High</td>
+                        <td>Hogg Middle</td>
+                        <td>Web Game &amp; Mobile App Dev. Dedicated VEX, FIRST Robotics, and Arduino labs.</td>
+                        <td><strong>Robotics Club (Hogg)</strong> — early mechanical + logic exposure.</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight:700;">Bellaire High</td>
+                        <td>Pin Oak Middle</td>
+                        <td>Sequential Java/Python → CS III (Advanced Algorithms &amp; Data Structures).</td>
+                        <td><strong>Video Game Design (Pin Oak)</strong> — TSA Top 10 in State.</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight:700;">Lamar High</td>
+                        <td>Lanier Middle</td>
+                        <td>Cybersecurity &amp; IB Logic. Systems architecture, computational thinking.</td>
+                        <td><strong>VEX Robotics (Lanier)</strong> — 2025 World Championship qualifiers.</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight:700;">Memorial High</td>
+                        <td>Memorial Middle</td>
+                        <td>Professional Software Dev career track for future game devs.</td>
+                        <td><strong>iCode Memorial</strong> — "Roblox Editor: Create &amp; Code Your World".</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight:700;">Carnegie Vanguard</td>
+                        <td>Magnet (Apply)</td>
+                        <td>TPSP Independent Research — could build a custom Roblox engine prototype.</td>
+                        <td><strong>Competitive Programming</strong> — highest-level math &amp; logic.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="callout-box fade-in">
+            <h3>Strategic Recommendation for Silas</h3>
+            <p><strong>Best Middle Schools:</strong> Pin Oak (State-ranked Video Game Design) or Lanier (World-class Robotics).</p>
+            <p><strong>High School:</strong> Heights Magnet for hands-on game dev. Bellaire or Memorial for rigorous algorithm mastery.</p>
+            <p><strong>Immediate:</strong> Enroll at <span class="highlight">iCode Memorial (77024)</span> for Lua/Luau game programming now.</p>
+        </div>
+    </div>
+</section>
+
+<div class="tile-divider"></div>
+
+<!-- ════════════════════════════════════ -->
+<!--  5. COMMUTE GRID                    -->
+<!-- ════════════════════════════════════ -->
+<section id="commute">
+    <span class="section-number">04</span>
+    <div class="container">
+        <h3>The Commute Grid</h3>
+<h1 style="font-size: clamp(2.2rem, 5.5vw, 4.5rem);"><span class="red-text">NRG</span> <span class="gold-text" style="font-weight:400; font-style:italic; font-family: var(--font-accent);">vs.</span><br><span class="blue-text">IAH</span></h1>
+        <p>Balancing Melissa's daily drive to NRG against Brian's airport runs. The sweet spots: <span class="highlight">Bellaire</span> for Melissa, <span class="highlight">Heights/Carnegie</span> for Brian.</p>
+
+        <div class="table-wrap fade-in">
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Neighborhood</th>
+                        <th>Melissa → NRG</th>
+                        <th>Brian → IAH</th>
+                        <th>Memorial Park</th>
+                        <th>Balance Rating</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="school-col">Bellaire</td>
+                        <td>~10 min <span class="badge badge-best">Best</span></td>
+                        <td>~40 min</td>
+                        <td>~15–20 min</td>
+                        <td>Best for Melissa</td>
+                    </tr>
+                    <tr>
+                        <td class="school-col">Lamar / West U</td>
+                        <td>~12 min <span class="badge badge-strong">Strong</span></td>
+                        <td>~35 min</td>
+                        <td>~10 min <span class="badge badge-strong">Strong</span></td>
+                        <td>Strong balance</td>
+                    </tr>
+                    <tr>
+                        <td class="school-col">Museum District</td>
+                        <td>~18 min</td>
+                        <td>~25 min <span class="badge badge-strong">Strong</span></td>
+                        <td>~10–15 min</td>
+                        <td>Best overall balance</td>
+                    </tr>
+                    <tr>
+                        <td class="school-col">Heights</td>
+                        <td>~20 min</td>
+                        <td>~28 min <span class="badge badge-best">Best</span></td>
+                        <td>~8–10 min</td>
+                        <td>Best for Brian + Park</td>
+                    </tr>
+                    <tr>
+                        <td class="school-col">Memorial / 77024</td>
+                        <td>~22 min</td>
+                        <td>~30 min</td>
+                        <td>&lt; 5 min <span class="badge badge-best">Best</span></td>
+                        <td>Best for lifestyle</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<div class="tile-divider"></div>
+
+<!-- ════════════════════════════════════ -->
+<!--  MAP OVERVIEW                       -->
+<!-- ════════════════════════════════════ -->
+<section id="map-overview" class="bg-candy-blue">
+    <span class="section-number" style="color: rgba(46,107,138,0.08);">&#9873;</span>
+    <div class="container">
+        <h3>The Lay of the Land</h3>
+        <h1 style="font-size: clamp(2.2rem, 6vw, 4.5rem);"><span class="gothic-h">H</span>OUSTON<br><span class="blue-text">MAP ROOM</span></h1>
+        <p>All five target neighborhoods, plus NRG Stadium, IAH Airport, and Memorial Park — on one interactive map. Zoom in, switch to satellite, and explore.</p>
+
+        <div class="map-container map-overview fade-in">
+            <iframe src="https://maps.google.com/maps?q=Houston+Texas+Inner+Loop+610&t=&z=11&ie=UTF8&iwloc=&output=embed" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <div class="map-label">Houston Inner Loop — All Neighborhoods</div>
+        </div>
+
+        <div class="map-grid fade-in">
+            <div class="map-container">
+                <iframe src="https://maps.google.com/maps?q=NRG+Stadium+Houston+TX&t=&z=14&ie=UTF8&iwloc=&output=embed" loading="lazy" allowfullscreen></iframe>
+                <div class="map-label">NRG Stadium — Melissa's Office</div>
+            </div>
+            <div class="map-container">
+                <iframe src="https://maps.google.com/maps?q=George+Bush+Intercontinental+Airport+Houston&t=&z=12&ie=UTF8&iwloc=&output=embed" loading="lazy" allowfullscreen></iframe>
+                <div class="map-label">IAH Airport — Brian's Hub</div>
+            </div>
+            <div class="map-container">
+                <iframe src="https://maps.google.com/maps?q=Memorial+Park+Golf+Course+Houston+TX&t=&z=14&ie=UTF8&iwloc=&output=embed" loading="lazy" allowfullscreen></iframe>
+                <div class="map-label">Memorial Park Golf Course</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="tile-divider"></div>
+
+<!-- ════════════════════════════════════ -->
+<!--  6. MEMORIAL HIGH                   -->
+<!-- ════════════════════════════════════ -->
+<section id="memorial-hood">
+    <span class="section-number">06</span>
+    <div class="container">
+        <h3>Spring Branch ISD — 77024</h3>
+        <h1 style="font-size: clamp(2.2rem, 6vw, 4.5rem);">MEMORIAL<br><span class="red-text"><span class="gothic-h">H</span>IGH</span></h1>
+        <span class="tag tag-red">Condo Focus</span>
+        <span class="tag tag-gold">Dual Hub Advantage</span>
+        <p>The premier SBISD option. A dedicated <span class="highlight">Software Development career track</span> and the Dual Hub: minutes from Memorial Park GC and iCode Memorial for Silas's Roblox-specific Lua coding.</p>
+
+        <div class="stats-row fade-in">
+            <div class="stat-box">
+                <div class="stat-label">Melissa → NRG</div>
+                <div class="stat-value">~22 min</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-label">Brian → IAH</div>
+                <div class="stat-value">~30 min</div>
+                <div class="stat-detail">Hardy Toll Road</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-label">Memorial Park</div>
+                <div class="stat-value">&lt; 5 min</div>
+                <div class="stat-detail">Best on this list</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-label">Silas's Edge</div>
+                <div class="stat-value">iCode + SW Dev</div>
+                <div class="stat-detail">Roblox Lua now, career track later</div>
+            </div>
+        </div>
+
+        <div class="school-pipeline fade-in">
+            <h3>Silas's Pipeline</h3>
+            <div class="pipeline-row">
+                <span class="pipeline-stage">Elementary</span>
+                <span class="pipeline-arrow">&rarr;</span>
+                <span class="pipeline-schools">Memorial, Frostwood, Bunker Hill</span>
+            </div>
+            <div class="pipeline-row">
+                <span class="pipeline-stage">Middle</span>
+                <span class="pipeline-arrow">&rarr;</span>
+                <span class="pipeline-schools">Memorial MS, Laney MS</span>
+            </div>
+            <div class="pipeline-row">
+                <span class="pipeline-stage">High School</span>
+                <span class="pipeline-arrow">&rarr;</span>
+                <span class="pipeline-schools">Memorial High — must be zoned to SBISD</span>
+            </div>
+            <div class="pipeline-row">
+                <span class="pipeline-stage">Supplement</span>
+                <span class="pipeline-arrow">&rarr;</span>
+                <span class="pipeline-schools">iCode Memorial — Roblox Editor: Create &amp; Code Your World (ages 6–15)</span>
+            </div>
+        </div>
+
+        <div class="map-container fade-in">
+            <iframe src="https://maps.google.com/maps?q=Memorial+High+School+Houston+TX+77024&t=&z=14&ie=UTF8&iwloc=&output=embed" loading="lazy" allowfullscreen></iframe>
+            <div class="map-label">Memorial / 77024 — Zoom &amp; Explore</div>
+        </div>
+    </div>
+</section>
+
+<!-- ════════════════════════════════════ -->
+<!--  7. BELLAIRE HIGH                   -->
+<!-- ════════════════════════════════════ -->
+<section id="bellaire-hood">
+    <span class="section-number">07</span>
+    <div class="container">
+        <h3>Houston ISD</h3>
+        <h1 style="font-size: clamp(2.2rem, 6vw, 4.5rem);">BELLAIRE<br><span class="red-text"><span class="gothic-h">H</span>IGH</span></h1>
+        <span class="tag tag-red">Home Focus</span>
+        <span class="tag tag-outline">Best Commute for Melissa</span>
+        <p>The strongest academic CS sequence: <span class="highlight">Java/Python → CS III Advanced Algorithms</span>. Bellaire delivers the best NRG commute at ~10 minutes. Pin Oak Middle's TSA team: <span class="highlight">Top 10 in State for Video Game Design</span>.</p>
+
+        <div class="stats-row fade-in">
+            <div class="stat-box">
+                <div class="stat-label">Melissa → NRG</div>
+                <div class="stat-value">~10 min</div>
+                <div class="stat-detail">Best on this list</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-label">Brian → IAH</div>
+                <div class="stat-value">~40 min</div>
+                <div class="stat-detail">Longest commute</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-label">Memorial Park</div>
+                <div class="stat-value">~15–20 min</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-label">Housing</div>
+                <div class="stat-value">~$500K–$750K</div>
+                <div class="stat-detail">Updated 1950s/60s cottage homes</div>
+            </div>
+        </div>
+
+        <div class="school-pipeline fade-in">
+            <h3>Silas's Pipeline</h3>
+            <div class="pipeline-row">
+                <span class="pipeline-stage">Elementary</span>
+                <span class="pipeline-arrow">&rarr;</span>
+                <span class="pipeline-schools">Horn, Condit, Lovett</span>
+            </div>
+            <div class="pipeline-row">
+                <span class="pipeline-stage">Middle</span>
+                <span class="pipeline-arrow">&rarr;</span>
+                <span class="pipeline-schools">Pin Oak (State Top 10 Game Design), Meyerland</span>
+            </div>
+            <div class="pipeline-row">
+                <span class="pipeline-stage">High School</span>
+                <span class="pipeline-arrow">&rarr;</span>
+                <span class="pipeline-schools">Bellaire High — World Languages Magnet (HISD School Choice)</span>
+            </div>
+        </div>
+
+        <div class="map-container fade-in">
+            <iframe src="https://maps.google.com/maps?q=Bellaire+High+School+Houston+TX&t=&z=14&ie=UTF8&iwloc=&output=embed" loading="lazy" allowfullscreen></iframe>
+            <div class="map-label">Bellaire — Zoom &amp; Explore</div>
+        </div>
+    </div>
+</section>
+
+<!-- ════════════════════════════════════ -->
+<!--  8. LAMAR HIGH                      -->
+<!-- ════════════════════════════════════ -->
+<section id="lamar-hood">
+    <span class="section-number">08</span>
+    <div class="container">
+        <h3>Houston ISD — West U / River Oaks</h3>
+        <h1 style="font-size: clamp(2.2rem, 6vw, 4.5rem);">LAMAR<br><span class="red-text"><span class="gothic-h">H</span>IGH</span></h1>
+        <span class="tag tag-red">Condo Focus</span>
+        <span class="tag tag-outline">Strong All-Around</span>
+        <p><span class="highlight">Cybersecurity</span> certs and IB computational thinking. Lanier Middle produced <span class="highlight">2025 VEX World Championship qualifiers</span>. Walkable to Rice Village from West U.</p>
+
+        <div class="stats-row fade-in">
+            <div class="stat-box">
+                <div class="stat-label">Melissa → NRG</div>
+                <div class="stat-value">~12 min</div>
+                <div class="stat-detail">Excellent</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-label">Brian → IAH</div>
+                <div class="stat-value">~35 min</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-label">Memorial Park</div>
+                <div class="stat-value">~10 min</div>
+                <div class="stat-detail">From West U/Poe</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-label">Housing</div>
+                <div class="stat-value">$500K–$800K</div>
+                <div class="stat-detail">3525 Sage / Arabella / Condo units</div>
+            </div>
+        </div>
+
+        <div class="school-pipeline fade-in">
+            <h3>Silas's Pipeline</h3>
+            <div class="pipeline-row">
+                <span class="pipeline-stage">Elementary</span>
+                <span class="pipeline-arrow">&rarr;</span>
+                <span class="pipeline-schools">West U, Poe, River Oaks</span>
+            </div>
+            <div class="pipeline-row">
+                <span class="pipeline-stage">Middle</span>
+                <span class="pipeline-arrow">&rarr;</span>
+                <span class="pipeline-schools">Pershing, Lanier (2025 VEX Worlds qualifiers)</span>
+            </div>
+            <div class="pipeline-row">
+                <span class="pipeline-stage">High School</span>
+                <span class="pipeline-arrow">&rarr;</span>
+                <span class="pipeline-schools">Lamar High — Business Administration Magnet (HISD School Choice)</span>
+            </div>
+        </div>
+
+        <div class="map-container fade-in">
+            <iframe src="https://maps.google.com/maps?q=Lamar+High+School+Houston+TX&t=&z=14&ie=UTF8&iwloc=&output=embed" loading="lazy" allowfullscreen></iframe>
+            <div class="map-label">West U / River Oaks / Lamar — Zoom &amp; Explore</div>
+        </div>
+    </div>
+</section>
+
+<!-- ════════════════════════════════════ -->
+<!--  9. HEIGHTS HIGH                    -->
+<!-- ════════════════════════════════════ -->
+<section id="heights-hood">
+    <span class="section-number">09</span>
+    <div class="container">
+        <h3>Houston ISD — The Heights</h3>
+        <h1 style="font-size: clamp(2.2rem, 6vw, 4.5rem);"><span class="gothic-h">H</span>EIGHTS<br><span class="red-text">HIGH</span></h1>
+        <span class="tag tag-red">Townhome Focus</span>
+        <span class="tag tag-blue">Best Labs + Best IAH Commute</span>
+        <p>The <span class="highlight">best lab access</span> on this list — dedicated Robotics &amp; Electronics labs. Vibrant walkable culture. Best commute balance for Brian to IAH, and strong Memorial Park proximity for the family.</p>
+
+        <div class="stats-row fade-in">
+            <div class="stat-box">
+                <div class="stat-label">Melissa → NRG</div>
+                <div class="stat-value">~20 min</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-label">Brian → IAH</div>
+                <div class="stat-value">~28 min</div>
+                <div class="stat-detail">Best IAH commute</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-label">Memorial Park</div>
+                <div class="stat-value">~8–10 min</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-label">Housing</div>
+                <div class="stat-value">$500K–$800K</div>
+                <div class="stat-detail">Modern 3-story townhomes</div>
+            </div>
+        </div>
+
+        <div class="school-pipeline fade-in">
+            <h3>Silas's Pipeline</h3>
+            <div class="pipeline-row">
+                <span class="pipeline-stage">Elementary</span>
+                <span class="pipeline-arrow">&rarr;</span>
+                <span class="pipeline-schools">Harvard, Field, Travis</span>
+            </div>
+            <div class="pipeline-row">
+                <span class="pipeline-stage">Middle</span>
+                <span class="pipeline-arrow">&rarr;</span>
+                <span class="pipeline-schools">Hogg (Robotics Club), Hamilton</span>
+            </div>
+            <div class="pipeline-row">
+                <span class="pipeline-stage">High School</span>
+                <span class="pipeline-arrow">&rarr;</span>
+                <span class="pipeline-schools">Heights High — Computer Technology Magnet (HISD School Choice)</span>
+            </div>
+
+
+<h3 style="margin-top: 2.5rem;">Where to Live in the Heights High Zone</h3>
+        <p style="font-size: 1rem; color: var(--nasa-silver); margin-bottom: 0.5rem;">Important: Stay <strong>north of Washington Ave</strong> to remain in the Heights High zone. Rice Military (south of Washington) feeds to Lamar High.</p>
+
+        <div class="grid-2 fade-in" style="margin-top: 1.5rem;">
+
+            <div class="property-card">
+                <div class="prop-rank">1</div>
+                <span class="tag tag-blue">Best Value</span>
+                <div class="prop-name">Shady Acres — Modern Townhomes</div>
+                <div class="prop-detail"><strong>Type:</strong> New-construction 3-story townhomes, rooftop decks common</div>
+                <div class="prop-detail"><strong>Price:</strong> $500K–$650K — sweet spot of the budget</div>
+                <div class="prop-detail"><strong>Zoned:</strong> Harvard Elem → Hogg MS (Robotics) → <strong>Heights High</strong></div>
+                <div class="prop-detail"><strong>Character:</strong> No deed restrictions = heaviest new-build inventory. Contemporary, clean-lined.</div>
+                <div class="prop-detail"><strong>Memorial Park:</strong> ~8–10 min &nbsp;|&nbsp; <strong>IAH:</strong> ~28 min</div>
+            </div>
+
+            <div class="property-card">
+                <div class="prop-rank">2</div>
+                <span class="tag tag-blue">Best Walkability</span>
+                <div class="prop-name">Greater Heights / 19th Street</div>
+                <div class="prop-detail"><strong>Type:</strong> Townhomes &amp; renovated homes near the main commercial corridor</div>
+                <div class="prop-detail"><strong>Price:</strong> $550K–$750K</div>
+                <div class="prop-detail"><strong>Zoned:</strong> Field Elem → Hogg/Hamilton MS → <strong>Heights High</strong></div>
+                <div class="prop-detail"><strong>Character:</strong> Houston Heights' main street — restaurants, shops, Hike &amp; Bike Trail. Most walkable in the zone.</div>
+                <div class="prop-detail"><strong>Memorial Park:</strong> ~8 min &nbsp;|&nbsp; <strong>IAH:</strong> ~28 min</div>
+            </div>
+
+            <div class="property-card">
+                <div class="prop-rank">3</div>
+                <span class="tag tag-blue">Best Character</span>
+                <div class="prop-name">Norhill — Historic Bungalows + Infill</div>
+                <div class="prop-detail"><strong>Type:</strong> Restored 1920s bungalows (Colonial, English, Spanish) with modern infill townhomes</div>
+                <div class="prop-detail"><strong>Price:</strong> $500K–$800K</div>
+                <div class="prop-detail"><strong>Zoned:</strong> Harvard Elem → Hogg MS (Robotics) → <strong>Heights High</strong></div>
+                <div class="prop-detail"><strong>Character:</strong> Eclectic historic charm. Tree-lined streets. Unique architectural styles.</div>
+                <div class="prop-detail"><strong>Memorial Park:</strong> ~10 min &nbsp;|&nbsp; <strong>IAH:</strong> ~28 min</div>
+            </div>
+
+            <div class="property-card">
+                <div class="prop-rank">4</div>
+                <span class="tag tag-blue">Most Beautiful</span>
+                <div class="prop-name">Woodland Heights</div>
+                <div class="prop-detail"><strong>Type:</strong> Renovated single-family homes along White Oak Bayou</div>
+                <div class="prop-detail"><strong>Price:</strong> $600K–$800K</div>
+                <div class="prop-detail"><strong>Zoned:</strong> Travis Elem (A- Niche rating) → Hogg/Hamilton MS → <strong>Heights High</strong></div>
+                <div class="prop-detail"><strong>Character:</strong> Historic district overlay — fewer townhomes but stunning tree-lined streets. Best elementary school in the zone (Travis).</div>
+                <div class="prop-detail"><strong>Memorial Park:</strong> ~8 min &nbsp;|&nbsp; <strong>IAH:</strong> ~30 min</div>
+            </div>
+
+            <div class="property-card">
+                <div class="prop-rank">5</div>
+                <span class="tag tag-blue">Emerging Value</span>
+                <div class="prop-name">Sunset Heights</div>
+                <div class="prop-detail"><strong>Type:</strong> Mix of historic bungalows and newer construction</div>
+                <div class="prop-detail"><strong>Price:</strong> $450K–$650K — most affordable entry point</div>
+                <div class="prop-detail"><strong>Zoned:</strong> Heights High feeder pattern</div>
+                <div class="prop-detail"><strong>Character:</strong> Adjacent to Heights proper, still developing. Best value if you want under $600K in the Heights High zone.</div>
+                <div class="prop-detail"><strong>Memorial Park:</strong> ~10–12 min &nbsp;|&nbsp; <strong>IAH:</strong> ~26 min</div>
+            </div>
+
+        </div>
+
+        <div class="callout-box fade-in" style="margin-top: 1.5rem;">
+            <h3>Heights High Zone — Key Boundary Rule</h3>
+            <p><strong>North of Washington Ave</strong> = Heights High zone (Shady Acres, Norhill, Greater Heights, Woodland Heights, Sunset Heights).</p>
+            <p><strong>South of Washington Ave</strong> (Rice Military) = <strong>Lamar High</strong> zone — different school, different feeder pattern.</p>
+            <p>When touring, always confirm the specific address at <span class="highlight">schoolnavigator.houstonisd.org</span> — HISD boundaries can split at the street level.</p>
+        </div>
+
+
+<div class="callout-box fade-in" style="margin-top: 2rem; border-left-color: var(--warm-gold);">
+            <h3 style="color: var(--warm-gold);">Featured Listing — Now Available</h3>
+            <p style="font-size: 1.3rem; font-weight: 700; margin-bottom: 0.3rem;">1524 W 21st St, Houston, TX 77008</p>
+            <p style="font-size: 0.9rem; margin-bottom: 1rem; color: var(--matte-silver);">West 21st Residences by <strong style="color: var(--liberty-white);">Aspen Grey Homes</strong> — 7-home boutique new construction</p>
+        </div>
+
+        <div class="stats-row fade-in">
+            <div class="stat-box" style="border-left-color: var(--warm-gold);">
+                <div class="stat-label">Price</div>
+                <div class="stat-value">$719,000</div>
+                <div class="stat-detail">New construction — 2026</div>
+            </div>
+            <div class="stat-box" style="border-left-color: var(--warm-gold);">
+                <div class="stat-label">Size</div>
+                <div class="stat-value">2,750 sq ft</div>
+                <div class="stat-detail">3 bed / 3.5 bath / 3 stories</div>
+            </div>
+            <div class="stat-box" style="border-left-color: var(--warm-gold);">
+                <div class="stat-label">Zoned To</div>
+                <div class="stat-value">Heights High</div>
+                <div class="stat-detail">Harvard Elem → Hogg MS → Heights High</div>
+            </div>
+            <div class="stat-box" style="border-left-color: var(--warm-gold);">
+                <div class="stat-label">Memorial Park</div>
+                <div class="stat-value">~8 min</div>
+                <div class="stat-detail">Golf + Tennis access</div>
+            </div>
+        </div>
+
+        <div class="grid-2 fade-in">
+            <div class="card">
+                <h3>Home Features</h3>
+                <div class="card-detail"><strong>Style:</strong> Modern / Scandinavian-inspired 3-story</div>
+                <div class="card-detail"><strong>Living:</strong> Open-concept second-floor living with soaring ceilings</div>
+                <div class="card-detail"><strong>Kitchen:</strong> Sleek chef's kitchen with refined finishes</div>
+                <div class="card-detail"><strong>Light:</strong> Abundance of natural light throughout</div>
+                <div class="card-detail"><strong>Community:</strong> Boutique 7-home development — not a tract build</div>
+            </div>
+            <div class="card">
+                <h3>Why This One</h3>
+                <div class="card-detail"><strong>For Melissa:</strong> ~20 min to NRG. Lock-and-leave new build — no renovation stress.</div>
+                <div class="card-detail"><strong>For Brian:</strong> Best IAH commute on the list (~28 min). 8 min to Memorial Park GC.</div>
+                <div class="card-detail"><strong>For Silas:</strong> Harvard Elem → Hogg Robotics Club → Heights High Computer Tech Magnet. iCode supplement available.</div>
+                <div class="card-detail"><strong>Budget:</strong> $719K sits comfortably in range. 2,750 sq ft is generous for this price point.</div>
+            </div>
+        </div>
+
+        <div class="map-container fade-in" style="margin-top: 1.5rem;">
+            <iframe src="https://maps.google.com/maps?q=1524+W+21st+St+Houston+TX+77008&t=&z=16&ie=UTF8&iwloc=&output=embed" loading="lazy" allowfullscreen></iframe>
+            <div class="map-label">1524 W 21st St — Aspen Grey Homes</div>
+        </div>
+
+
+        </div>
+
+        <div class="map-container fade-in">
+            <iframe src="https://maps.google.com/maps?q=Heights+High+School+Houston+TX&t=&z=14&ie=UTF8&iwloc=&output=embed" loading="lazy" allowfullscreen></iframe>
+            <div class="map-label">The Heights — Zoom &amp; Explore</div>
+        </div>
+    </div>
+</section>
+
+<!-- ════════════════════════════════════ -->
+<!--  10. CARNEGIE VANGUARD              -->
+<!-- ════════════════════════════════════ -->
+<section id="carnegie-hood">
+    <span class="section-number">10</span>
+    <div class="container">
+        <h3>Houston ISD — Gifted &amp; Talented Magnet</h3>
+        <h1 style="font-size: clamp(2.2rem, 6vw, 4.5rem);">CARNEGIE<br><span class="red-text">VANGUARD</span></h1>
+        <span class="tag tag-gold">Elite Theory</span>
+        <span class="tag tag-outline">Museum District Recommended</span>
+        <p>The <span class="highlight">#1 AP Computer Science scores in Texas</span>. Citywide G/T magnet — Silas can live anywhere and apply. Strategic play: <span class="highlight">Museum District</span> for best commute balance for both Melissa and Brian.</p>
+
+        <div class="stats-row fade-in">
+            <div class="stat-box">
+                <div class="stat-label">Melissa → NRG</div>
+                <div class="stat-value">~18 min</div>
+                <div class="stat-detail">From Museum District</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-label">Brian → IAH</div>
+                <div class="stat-value">~25 min</div>
+                <div class="stat-detail">Strong balance</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-label">Memorial Park</div>
+                <div class="stat-value">~10–15 min</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-label">Silas's Edge</div>
+                <div class="stat-value">TPSP Research</div>
+                <div class="stat-detail">Year-long mentored project — Roblox engine prototype</div>
+            </div>
+        </div>
+
+        <div class="school-pipeline fade-in">
+            <h3>Silas's Pipeline</h3>
+            <div class="pipeline-row">
+                <span class="pipeline-stage">Elementary</span>
+                <span class="pipeline-arrow">&rarr;</span>
+                <span class="pipeline-schools">N/A — Magnet only</span>
+            </div>
+            <div class="pipeline-row">
+                <span class="pipeline-stage">Middle</span>
+                <span class="pipeline-arrow">&rarr;</span>
+                <span class="pipeline-schools">N/A</span>
+            </div>
+            <div class="pipeline-row">
+                <span class="pipeline-stage">High School</span>
+                <span class="pipeline-arrow">&rarr;</span>
+                <span class="pipeline-schools">Carnegie Vanguard — Must apply &amp; qualify as G/T</span>
+            </div>
+            <div class="pipeline-row">
+                <span class="pipeline-stage">Unique</span>
+                <span class="pipeline-arrow">&rarr;</span>
+                <span class="pipeline-schools">TPSP: year-long independent research mentored by professionals</span>
+            </div>
+        </div>
+
+        <div class="map-container fade-in">
+            <iframe src="https://maps.google.com/maps?q=Carnegie+Vanguard+High+School+Houston+TX&t=&z=13&ie=UTF8&iwloc=&output=embed" loading="lazy" allowfullscreen></iframe>
+            <div class="map-label">Carnegie Vanguard / Museum District — Zoom &amp; Explore</div>
+        </div>
+    </div>
+</section>
+
+<div class="tile-divider"></div>
+
+<!-- ════════════════════════════════════ -->
+<!--  11. GOLF SANCTUARY                 -->
+<!-- ════════════════════════════════════ -->
+<section id="golf" class="bg-gold">
+    <span class="section-number" style="color: rgba(212,168,67,0.08);">10</span>
+    <div class="container">
+        <h3 style="color: var(--warm-gold);">The 1.6 <span class="gothic-h" style="color: var(--warm-gold);">H</span>andicap Lifestyle</h3>
+        <h1 style="font-size: clamp(2.2rem, 6vw, 4.5rem);">THE GOLF<br><span class="gold-text">SANCTUARY</span></h1>
+        <p>Memorial Park Golf Course — home of the <span class="highlight">PGA Tour Houston Open</span> — is the primary hub. Focus on "cart path proximity" properties.</p>
+
+        <div class="grid-3 fade-in">
+            <div class="golf-card">
+                <h3>Memorial Park GC</h3>
+                <div class="card-title">Primary Hub</div>
+                <div class="card-detail">PGA Tour Houston Open venue. Redesigned by Tom Doak.</div>
+                <div class="card-detail"><strong>From Memorial/77024:</strong> &lt; 5 min</div>
+                <div class="card-detail"><strong>From Heights:</strong> ~8–10 min</div>
+            </div>
+            <div class="golf-card">
+                <h3>Champions Golf Club</h3>
+                <div class="card-title">The Scratch Hub</div>
+                <div class="card-detail">Elite private club. Where Houston's best compete. A natural home for 1.6 handicap play.</div>
+            </div>
+            <div class="golf-card">
+                <h3>Lochinvar Golf Club</h3>
+                <div class="card-title">IAH Convenience</div>
+                <div class="card-detail">Top-tier private club positioned for easy IAH access. Quick round before a flight.</div>
+            </div>
+        </div>
+
+        <div class="stats-row fade-in" style="margin-top:1.5rem;">
+            <div class="stat-box" style="border-left-color: var(--warm-gold);">
+                <div class="stat-label">Tennis</div>
+                <div class="stat-value">Memorial Park Tennis</div>
+                <div class="stat-detail">Also in Memorial Park — added lifestyle layer for the family.</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="tile-divider"></div>
+
+<section id="ev-savings" class="bg-candy-red">
+    <span class="section-number" style="color: rgba(212,33,69,0.06);">&#9889;</span>
+    <div class="container">
+        <h3 style="color: var(--warm-gold);">Sustainability &amp; Savings</h3>
+        <h1 style="font-size: clamp(2.2rem, 6vw, 4.5rem);">TWO TESLAS.<br><span class="red-text">ZERO FUEL<br>STRESS.</span></h1>
+        <p>Between Texas law, Melissa's office perks, and CenterPoint's utility territory, our EV costs are about to <span class="highlight">drop 85–90%</span> compared to what we're paying in North Texas. Here's the breakdown.</p>
+
+        <div class="stats-row fade-in">
+            <div class="stat-box">
+                <div class="stat-label">Monthly Home Charging</div>
+                <div class="stat-value">$5/mo</div>
+                <div class="stat-detail">Tesla Electric Fixed Plan — unlimited 12AM–6AM</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-label">Melissa's Work Charging</div>
+                <div class="stat-value">$0</div>
+                <div class="stat-detail">NRG Green Lot — 6 Level 2 ports, free for staff</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-label">Total Fuel Savings</div>
+                <div class="stat-value">~85–90%</div>
+                <div class="stat-detail">vs. current North Texas fuel costs</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-label">Condo Legal Protection</div>
+                <div class="stat-value">SB 1001</div>
+                <div class="stat-detail">TX "Right to Charge" — effective Jan 1, 2026</div>
+            </div>
+        </div>
+
+        <div class="grid-2 fade-in">
+            <div class="card">
+                <h3>Texas SB 1001 — Right to Charge</h3>
+                <div class="card-title">The 60-Day Rule</div>
+                <div class="card-detail">As of <strong>January 1, 2026</strong>, condo HOAs cannot block EV charger installation in your deeded parking spot.</div>
+                <div class="card-detail">Submit a written application → HOA has 60 days to respond → <strong>silence = automatic approval</strong>.</div>
+                <div class="card-detail">You cover installation &amp; electricity. Must use a licensed electrician and provide proof of insurance.</div>
+                <div class="card-detail"><strong>Resale value:</strong> A private Level 2 charger is a major "future-proofing" asset for units in the $600K–$800K range.</div>
+            </div>
+            <div class="card">
+                <h3>NRG Green Lot — Melissa's Perk</h3>
+                <div class="card-title">Free Daily Charging at Work</div>
+                <div class="card-detail"><strong>Location:</strong> Green Lot, West VIP/Staff entry off Murworth Dr. 6 Level 2 charging ports.</div>
+                <div class="card-detail"><strong>Benefit:</strong> Plug-and-play for staff. A full executive workday fully recovers commute range + more. Cost: <strong>$0</strong>.</div>
+                <div class="card-detail"><strong>Hardware note:</strong> Ports use J1772 plugs. Keep the Tesla NACS-to-J1772 adapter in the glovebox — NRG hasn't converted all stalls yet.</div>
+            </div>
+        </div>
+
+        <div class="callout-box fade-in">
+            <h3>Tesla Electric: The $5/Month Strategy</h3>
+            <p><strong>Plan:</strong> Tesla Electric Fixed Plan — available in CenterPoint utility territory (all of Houston).</p>
+            <p><strong>Cost:</strong> $5/month per vehicle for <strong>unlimited overnight charging</strong> from 12:00 AM to 6:00 AM.</p>
+            <p><strong>Condo requirement:</strong> Your parking spot charger must be tied to your unit's specific meter. When touring units at The Spires, 2520 Robinhood, or Memorial Condominiums — <span class="highlight">confirm the electrical room allows individual unit sub-metering</span>.</p>
+        </div>
+
+        <div class="map-container fade-in" style="margin-top: 2rem;">
+            <iframe src="https://maps.google.com/maps?q=NRG+Stadium+Green+Lot+Houston+TX&t=&z=15&ie=UTF8&iwloc=&output=embed" loading="lazy" allowfullscreen></iframe>
+            <div class="map-label">NRG Green Lot — Melissa's Charging Station</div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ════════════════════════════════════ -->
+<!--  12. TOP 10 PLACES TO SEE           -->
+<!-- ════════════════════════════════════ -->
+<section id="top10">
+    <span class="section-number">13</span>
+    <div class="container">
+        <h3>The Shortlist — $500K to $800K</h3>
+        <h1 style="font-size: clamp(2.2rem, 6vw, 4.5rem);">TOP 10<br><span class="red-text">TO SEE</span></h1>
+        <p>Specific buildings, neighborhoods, and addresses — ranked by overall fit for the Audia family. Each one with its school zone so you know exactly what Silas gets.</p>
+
+        <div class="grid-2 fade-in">
+
+            <!-- #1 -->
+            <div class="property-card">
+                <div class="prop-rank">1</div>
+                <span class="tag tag-red">Memorial / 77024</span>
+                <div class="prop-name">Memorial Condominiums</div>
+                <div class="prop-detail"><strong>Type:</strong> High-end lock-and-leave condo</div>
+                <div class="prop-detail"><strong>Price Range:</strong> $500K–$800K for updated 2BR/3BR units</div>
+                <div class="prop-detail"><strong>Zoned:</strong> Memorial Elem → Memorial MS → <strong>Memorial High (SBISD)</strong></div>
+                <div class="prop-detail"><strong>Why #1:</strong> Dual Hub — &lt; 5 min to Memorial Park GC + iCode Memorial for Silas. Software Dev track at Memorial High.</div>
+            </div>
+
+            <!-- #2 -->
+            <div class="property-card">
+                <div class="prop-rank">2</div>
+                <span class="tag tag-red">West U / 77005</span>
+                <div class="prop-name">2520 Robinhood / West U Area</div>
+                <div class="prop-detail"><strong>Type:</strong> Walkable cottage homes &amp; townhomes near Rice Village</div>
+                <div class="prop-detail"><strong>Price Range:</strong> $550K–$750K for updated homes &amp; townhomes</div>
+                <div class="prop-detail"><strong>Zoned:</strong> Poe Elem → Pershing MS → <strong>Lamar High (HISD)</strong></div>
+                <div class="prop-detail"><strong>Why #2:</strong> 12 min to NRG for Melissa. Lanier MS robotics. Walkable village lifestyle.</div>
+            </div>
+
+            <!-- #3 -->
+            <div class="property-card">
+                <div class="prop-rank">3</div>
+                <span class="tag tag-red">Bellaire / 77401</span>
+                <div class="prop-name">Bellaire Cottage Homes</div>
+                <div class="prop-detail"><strong>Type:</strong> Updated 1950s/60s cottage homes with modern interiors</div>
+                <div class="prop-detail"><strong>Price Range:</strong> $500K–$750K for 3BR updated homes</div>
+                <div class="prop-detail"><strong>Zoned:</strong> Horn/Condit Elem → Pin Oak MS → <strong>Bellaire High (HISD)</strong></div>
+                <div class="prop-detail"><strong>Why #3:</strong> Best NRG commute (~10 min). Pin Oak's TSA Video Game Design is Top 10 in State for Silas.</div>
+            </div>
+
+            <!-- #4 -->
+            <div class="property-card">
+                <div class="prop-rank">4</div>
+                <span class="tag tag-red">Upper Kirby / Greenway</span>
+                <div class="prop-name">3525 Sage</div>
+                <div class="prop-detail"><strong>Type:</strong> 17-story high-rise, 1–2BR luxury condos</div>
+                <div class="prop-detail"><strong>Price Range:</strong> $500K–$700K</div>
+                <div class="prop-detail"><strong>Zoned:</strong> HISD → Lanier MS → <strong>Lamar High (HISD)</strong></div>
+                <div class="prop-detail"><strong>Why #4:</strong> Central Galleria/Uptown location. Lock-and-leave. Strong Lamar cyber pipeline for Silas.</div>
+            </div>
+
+            <!-- #5 -->
+            <div class="property-card">
+                <div class="prop-rank">5</div>
+                <span class="tag tag-red">The Heights</span>
+                <div class="prop-name">Heights Modern Townhomes</div>
+                <div class="prop-detail"><strong>Type:</strong> New-build 3-story townhomes (3–4 BR, rooftop decks common)</div>
+                <div class="prop-detail"><strong>Price Range:</strong> $500K–$750K</div>
+                <div class="prop-detail"><strong>Zoned:</strong> Harvard/Field Elem → Hogg MS → <strong>Heights High (HISD)</strong></div>
+                <div class="prop-detail"><strong>Why #5:</strong> Best IAH commute for Brian (~28 min). Heights High Robotics labs. Walkable 19th St &amp; White Oak culture.</div>
+            </div>
+
+            <!-- #6 -->
+            <div class="property-card">
+                <div class="prop-rank">6</div>
+                <span class="tag tag-red">River Oaks Adjacent</span>
+                <div class="prop-name">2727 Kirby</div>
+                <div class="prop-detail"><strong>Type:</strong> 30-story luxury high-rise, 24hr concierge &amp; valet</div>
+                <div class="prop-detail"><strong>Price Range:</strong> $500K–$800K for 1–2BR units</div>
+                <div class="prop-detail"><strong>Zoned:</strong> River Oaks Elem → Lanier MS → <strong>Lamar High (HISD)</strong></div>
+                <div class="prop-detail"><strong>Why #6:</strong> Iconic River Oaks address. Strong Lamar feeder. Centrally positioned for NRG + Memorial Park.</div>
+            </div>
+
+            <!-- #7 -->
+            <div class="property-card">
+                <div class="prop-rank">7</div>
+                <span class="tag tag-red">Galleria / Uptown</span>
+                <div class="prop-name">The Royalton at River Oaks</div>
+                <div class="prop-detail"><strong>Type:</strong> Luxury high-rise with resort amenities</div>
+                <div class="prop-detail"><strong>Price Range:</strong> $500K–$700K entry-level units</div>
+                <div class="prop-detail"><strong>Zoned:</strong> HISD → <strong>Lamar High (HISD)</strong></div>
+                <div class="prop-detail"><strong>Why #7:</strong> Premium lock-and-leave lifestyle. Galleria dining &amp; shopping. 10 min to Memorial Park.</div>
+            </div>
+
+            <!-- #8 -->
+            <div class="property-card">
+                <div class="prop-rank">8</div>
+                <span class="tag tag-red">Museum District / 77004</span>
+                <div class="prop-name">Museum District Condos &amp; Townhomes</div>
+                <div class="prop-detail"><strong>Type:</strong> Mid-rise condos &amp; modern townhomes near Hermann Park</div>
+                <div class="prop-detail"><strong>Price Range:</strong> $500K–$750K</div>
+                <div class="prop-detail"><strong>Zoned:</strong> HISD (flexible — <strong>Carnegie Vanguard</strong> magnet application)</div>
+                <div class="prop-detail"><strong>Why #8:</strong> Best overall commute balance. Carnegie G/T is #1 AP CS in TX. Cultural richness for the family.</div>
+            </div>
+
+            <!-- #9 -->
+            <div class="property-card">
+                <div class="prop-rank">9</div>
+                <span class="tag tag-red">Montrose</span>
+                <div class="prop-name">Montrose Townhomes &amp; Condos</div>
+                <div class="prop-detail"><strong>Type:</strong> Eclectic mix — modern townhomes, historic conversions, mid-rise condos</div>
+                <div class="prop-detail"><strong>Price Range:</strong> $500K–$700K</div>
+                <div class="prop-detail"><strong>Zoned:</strong> HISD → <strong>Lamar High (HISD)</strong></div>
+                <div class="prop-detail"><strong>Why #9:</strong> Houston's cultural heart. ~15 min to NRG. Excellent Memorial Park access (~8 min). Lamar cyber pipeline.</div>
+            </div>
+
+            <!-- #10 -->
+            <div class="property-card">
+                <div class="prop-rank">10</div>
+                <span class="tag tag-red">Rice Military / Washington Corridor</span>
+                <div class="prop-name">Rice Military Townhomes</div>
+                <div class="prop-detail"><strong>Type:</strong> New-construction modern townhomes (3BR, rooftop views common)</div>
+                <div class="prop-detail"><strong>Price Range:</strong> $500K–$700K</div>
+                <div class="prop-detail"><strong>Zoned:</strong> Memorial Elem → Hogg MS → <strong>Lamar High (HISD)</strong></div>
+                <div class="prop-detail"><strong>Why #10:</strong> Adjacent to Memorial Park (walkable). Lamar cyber/IB pipeline via Hogg. Trendy Washington Ave dining.</div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+
+<div class="tile-divider"></div>
+
+<!-- ════════════════════════════════════ -->
+<!--  13. FULL COMPARISON                -->
+<!-- ════════════════════════════════════ -->
+<!-- ════════════════════════════════════════════════ -->
+<!--  LUXURY CONDOS INSIDE THE LOOP                -->
+<!--  Ready to insert into                         -->
+<!--  houston-neighborhoods.html                   -->
+<!--  Suggested: new section after Top 10 or       -->
+<!--  before Full Comparison                       -->
+<!-- ════════════════════════════════════════════════ -->
+
+    <!-- ═══ LUXURY CONDOS ═══ -->
+    <section id="luxury-condos" style="background: linear-gradient(180deg, rgba(10,10,10,0.95) 0%, rgba(26,58,74,0.15) 50%, rgba(10,10,10,0.95) 100%);">
+        <div class="container">
+
+            <div class="tile-divider"></div>
+
+            <h2 class="section-title fade-in" style="margin-top: 2rem;">
+                <span class="gothic-h" style="font-family: var(--font-gothic); font-size: 2.2rem; color: var(--candy-red);">H</span>igh-Rise Living
+            </h2>
+            <p class="section-subtitle fade-in">Top 12 Luxury Condominiums Inside the Loop — Mapped to Our School Zones</p>
+
+            <!-- Key Insight Box -->
+            <div class="callout-box fade-in" style="margin: 2rem 0; border-left: 4px solid var(--warm-gold); background: rgba(212,168,67,0.08);">
+                <h3 style="color: var(--warm-gold);">Key Insight for Melissa</h3>
+                <p><strong>8 of the top 10 buildings feed to Lamar High School</strong> — making it the dominant pipeline for luxury high-rise living inside the loop. Lamar offers one of the broadest IB programs in North America, including IB Computer Science for Silas's coding trajectory.</p>
+                <p style="margin-top: 0.5rem; font-size: 0.9rem; color: var(--nasa-silver);">Buildings marked with ✅ have inventory in our $500K–$800K range.</p>
+            </div>
+
+            <!-- ─── LAMAR ZONE HEADER ─── -->
+            <div class="fade-in" style="margin: 2rem 0 1rem;">
+                <h3 style="color: var(--candy-red); text-transform: uppercase; letter-spacing: 3px; font-size: 0.85rem; font-weight: 700;">
+                    Lamar High School Zone — HISD
+                </h3>
+                <p style="font-size: 0.85rem; color: var(--nasa-silver);">IB Diploma Programme · Advanced Placement · Business Magnet · One of the broadest IB programs in North America</p>
+            </div>
+
+            <!-- CONDO GRID: LAMAR ZONE -->
+            <div class="grid-2 fade-in">
+
+                <!-- 1. Royalton -->
+                <div class="property-card" style="border-left: 3px solid var(--warm-gold);">
+                    <div class="prop-rank">1</div>
+                    <span class="tag tag-blue">✅ Best Value Luxury</span>
+                    <div class="prop-name">The Royalton at River Oaks</div>
+                    <div class="prop-detail"><strong>Address:</strong> 3333 Allen Parkway</div>
+                    <div class="prop-detail"><strong>Built:</strong> 2002 &nbsp;|&nbsp; <strong>Floors:</strong> 33 &nbsp;|&nbsp; <strong>Units:</strong> 253</div>
+                    <div class="prop-detail"><strong>Size:</strong> 471–3,500+ sqft (27 floor plans)</div>
+                    <div class="prop-detail"><strong>Price:</strong> $355K–$1.3M+ &nbsp; <span style="color: var(--warm-gold); font-weight: 700;">Multiple units $400K–$700K</span></div>
+                    <div class="prop-detail"><strong>HOA:</strong> $700–$2,900/mo</div>
+                    <div class="prop-detail"><strong>Schools:</strong> River Oaks Elem → Lanier MS → <strong>Lamar High</strong></div>
+                    <div class="prop-detail"><strong>Why:</strong> "Cool hat" architecture. Most floor plan variety in Houston. Buffalo Bayou views. Strong entry price.</div>
+                </div>
+
+                <!-- 2. Inwood Manor -->
+                <div class="property-card" style="border-left: 3px solid var(--warm-gold);">
+                    <div class="prop-rank">2</div>
+                    <span class="tag tag-blue">✅ Classic River Oaks</span>
+                    <div class="prop-name">Inwood Manor</div>
+                    <div class="prop-detail"><strong>Address:</strong> 3711 San Felipe St</div>
+                    <div class="prop-detail"><strong>Built:</strong> 1963 &nbsp;|&nbsp; <strong>Floors:</strong> 16 &nbsp;|&nbsp; <strong>Units:</strong> 110</div>
+                    <div class="prop-detail"><strong>Size:</strong> 750–6,237 sqft</div>
+                    <div class="prop-detail"><strong>Price:</strong> $120K–$1M+ &nbsp; <span style="color: var(--warm-gold); font-weight: 700;">Many units $500K–$800K</span></div>
+                    <div class="prop-detail"><strong>Schools:</strong> River Oaks Elem (IB PYP) → Lanier MS → <strong>Lamar High</strong></div>
+                    <div class="prop-detail"><strong>Why:</strong> Italian-style facade. Adjacent to River Oaks. Many renovated units. Most affordable Lamar-zone luxury address per sqft.</div>
+                </div>
+
+                <!-- 3. Willowick -->
+                <div class="property-card" style="border-left: 3px solid var(--warm-gold);">
+                    <div class="prop-rank">3</div>
+                    <span class="tag tag-blue">✅ All-Inclusive HOA</span>
+                    <div class="prop-name">The Willowick</div>
+                    <div class="prop-detail"><strong>Address:</strong> 2200 Willowick Rd</div>
+                    <div class="prop-detail"><strong>Built:</strong> 1963 (condos 1978) &nbsp;|&nbsp; <strong>Floors:</strong> 15 &nbsp;|&nbsp; <strong>Units:</strong> ~80</div>
+                    <div class="prop-detail"><strong>Size:</strong> 480–2,712 sqft</div>
+                    <div class="prop-detail"><strong>Price:</strong> $250K–$800K+ &nbsp; <span style="color: var(--warm-gold); font-weight: 700;">Sweet spot $400K–$700K</span></div>
+                    <div class="prop-detail"><strong>Schools:</strong> River Oaks Elem (IB PYP) → Lanier MS → <strong>Lamar High</strong></div>
+                    <div class="prop-detail"><strong>Why:</strong> Gerald Hines-built. HOA covers ALL utilities + cable. EV charging installed. Walk to Highland Village & Central Market.</div>
+                </div>
+
+                <!-- 4. Bayou Bend Towers -->
+                <div class="property-card" style="border-left: 3px solid var(--warm-gold);">
+                    <div class="prop-rank">4</div>
+                    <span class="tag tag-blue">✅ Park Views</span>
+                    <div class="prop-name">Bayou Bend Towers</div>
+                    <div class="prop-detail"><strong>Address:</strong> 101 Westcott St</div>
+                    <div class="prop-detail"><strong>Built:</strong> 1981 &nbsp;|&nbsp; <strong>Floors:</strong> 22 (three towers) &nbsp;|&nbsp; <strong>Units:</strong> 108</div>
+                    <div class="prop-detail"><strong>Size:</strong> 1,200–3,000+ sqft</div>
+                    <div class="prop-detail"><strong>Price:</strong> $249K–$1.65M &nbsp; <span style="color: var(--warm-gold); font-weight: 700;">Multiple units $400K–$800K</span></div>
+                    <div class="prop-detail"><strong>Schools:</strong> Memorial Elem → Hogg MS (IB MYP) → <strong>Lamar High</strong></div>
+                    <div class="prop-detail"><strong>Why:</strong> Three-tower complex. Buffalo Bayou & Memorial Park views. Walking to Memorial Park trails. Rice Military location.</div>
+                </div>
+
+                <!-- 5. 2727 Kirby -->
+                <div class="property-card">
+                    <div class="prop-rank">5</div>
+                    <span class="tag tag-blue">Edge of Budget</span>
+                    <div class="prop-name">2727 Kirby</div>
+                    <div class="prop-detail"><strong>Address:</strong> 2727 Kirby Dr</div>
+                    <div class="prop-detail"><strong>Built:</strong> 2009 &nbsp;|&nbsp; <strong>Floors:</strong> 30 &nbsp;|&nbsp; <strong>Units:</strong> 78</div>
+                    <div class="prop-detail"><strong>Size:</strong> 1,800–5,000+ sqft</div>
+                    <div class="prop-detail"><strong>Price:</strong> ~$500K–$2.5M+ (entry 1BR ~$500K)</div>
+                    <div class="prop-detail"><strong>Schools:</strong> Poe Elem → Lanier MS → <strong>Lamar High</strong></div>
+                    <div class="prop-detail"><strong>Why:</strong> Premier skyline views. One of Houston's most recognized luxury addresses. Rooftop pool, wine storage. Strong resale.</div>
+                </div>
+
+                <!-- 6. Huntingdon -->
+                <div class="property-card">
+                    <div class="prop-rank">6</div>
+                    <span class="tag tag-blue">Edge of Budget</span>
+                    <div class="prop-name">The Huntingdon</div>
+                    <div class="prop-detail"><strong>Address:</strong> 2121 Kirby Dr</div>
+                    <div class="prop-detail"><strong>Built:</strong> 1984 &nbsp;|&nbsp; <strong>Floors:</strong> 34 &nbsp;|&nbsp; <strong>Units:</strong> 126</div>
+                    <div class="prop-detail"><strong>Size:</strong> 800–6,200+ sqft</div>
+                    <div class="prop-detail"><strong>Price:</strong> ~$400K–$3M+ (smaller units occasionally $500K–$800K)</div>
+                    <div class="prop-detail"><strong>Schools:</strong> River Oaks Elem (IB PYP) → Lanier MS → <strong>Lamar High</strong></div>
+                    <div class="prop-detail"><strong>Why:</strong> Largest floor plans in Houston. Classic Italian facade. Recently renovated common areas. Storied legacy address.</div>
+                </div>
+
+                <!-- 7. Parc IV & V -->
+                <div class="property-card" style="border-left: 3px solid var(--warm-gold);">
+                    <div class="prop-rank">7</div>
+                    <span class="tag tag-blue">✅ Best Entry Price</span>
+                    <div class="prop-name">Parc IV & V (Montrose)</div>
+                    <div class="prop-detail"><strong>Address:</strong> 3614 & 3600 Montrose Blvd</div>
+                    <div class="prop-detail"><strong>Built:</strong> 1965–66 &nbsp;|&nbsp; <strong>Floors:</strong> 12 (twin) &nbsp;|&nbsp; <strong>Units:</strong> 184</div>
+                    <div class="prop-detail"><strong>Size:</strong> 516–2,000+ sqft</div>
+                    <div class="prop-detail"><strong>Price:</strong> $187K–$500K+ &nbsp; <span style="color: var(--warm-gold); font-weight: 700;">Most units well under $500K</span></div>
+                    <div class="prop-detail"><strong>Schools:</strong> Wilson Montessori (PK-8) → Lanier MS → <strong>Lamar High</strong></div>
+                    <div class="prop-detail"><strong>Why:</strong> Most affordable luxury entry in the Lamar zone. AIA Preservation Award. Walk to museums & downtown. Budget surplus for renovation.</div>
+                </div>
+
+                <!-- 8. The River Oaks -->
+                <div class="property-card" style="opacity: 0.75;">
+                    <div class="prop-rank">8</div>
+                    <span class="tag" style="background: rgba(167,25,48,0.3); color: var(--nasa-silver);">Above Budget — Reference</span>
+                    <div class="prop-name">The River Oaks</div>
+                    <div class="prop-detail"><strong>Address:</strong> 3433 Westheimer Rd</div>
+                    <div class="prop-detail"><strong>Built:</strong> 2017 &nbsp;|&nbsp; <strong>Floors:</strong> 19 &nbsp;|&nbsp; <strong>Units:</strong> 79</div>
+                    <div class="prop-detail"><strong>Size:</strong> 1,500–13,000 sqft</div>
+                    <div class="prop-detail"><strong>Price:</strong> $875K–$13M+ (entry ~$875K)</div>
+                    <div class="prop-detail"><strong>Schools:</strong> River Oaks Elem (IB PYP) → Lanier MS → <strong>Lamar High</strong></div>
+                    <div class="prop-detail"><strong>Why:</strong> Houston's most exclusive. Five-star concierge (dining, groceries, pet care, valet). Two pools, dog spa, chef's kitchen. The gold standard.</div>
+                </div>
+
+            </div>
+
+            <!-- ─── MUSEUM DISTRICT / CARNEGIE ─── -->
+            <div class="tile-divider" style="margin: 3rem 0 1.5rem;"></div>
+            <div class="fade-in">
+                <h3 style="color: var(--candy-red); text-transform: uppercase; letter-spacing: 3px; font-size: 0.85rem; font-weight: 700;">
+                    Museum District — Carnegie Vanguard Access
+                </h3>
+                <p style="font-size: 0.85rem; color: var(--nasa-silver);">Carnegie Vanguard HS is admission-based (not zone-based) — accessible from ANY HISD address. Top 10 nationally.</p>
+            </div>
+
+            <div class="grid-2 fade-in" style="margin-top: 1.5rem;">
+
+                <!-- 9. Parklane -->
+                <div class="property-card" style="border-left: 3px solid var(--warm-gold);">
+                    <div class="prop-rank">9</div>
+                    <span class="tag tag-blue">✅ Hermann Park Front Yard</span>
+                    <div class="prop-name">The Parklane</div>
+                    <div class="prop-detail"><strong>Address:</strong> 1701 Hermann Dr</div>
+                    <div class="prop-detail"><strong>Built:</strong> 1993 &nbsp;|&nbsp; <strong>Floors:</strong> 35 &nbsp;|&nbsp; <strong>Units:</strong> ~200</div>
+                    <div class="prop-detail"><strong>Size:</strong> 798–4,000+ sqft</div>
+                    <div class="prop-detail"><strong>Price:</strong> $390K–$1.585M &nbsp; <span style="color: var(--warm-gold); font-weight: 700;">Units from $390K–$800K</span></div>
+                    <div class="prop-detail"><strong>Schools:</strong> Lockhart Elem → Cullen MS → Yates HS (zoned) / <strong>Carnegie Vanguard</strong> (magnet)</div>
+                    <div class="prop-detail"><strong>Why:</strong> Hermann Park is your front yard. Museum District steps away. Free shuttle to MetroRail & Med Center. Tennis court. 24/7 concierge.</div>
+                </div>
+
+                <!-- Carnegie Vanguard Callout -->
+                <div class="callout-box" style="display: flex; flex-direction: column; justify-content: center;">
+                    <h3 style="color: var(--warm-gold);">Carnegie Vanguard High School</h3>
+                    <p>Application-based magnet school — <strong>no zone restriction</strong>. Any HISD student can apply.</p>
+                    <p style="margin-top: 0.5rem;">Consistently ranked <strong>top 10 nationally</strong>. Located in the Museum District. Rigorous STEM curriculum aligns with Silas's CS interests.</p>
+                    <p style="margin-top: 0.5rem; font-size: 0.85rem; color: var(--nasa-silver);">This means ANY of the Lamar-zone condos above ALSO have Carnegie Vanguard access via application.</p>
+                </div>
+
+            </div>
+
+            <!-- ─── GALLERIA / UPTOWN ─── -->
+            <div class="tile-divider" style="margin: 3rem 0 1.5rem;"></div>
+            <div class="fade-in">
+                <h3 style="color: var(--candy-red); text-transform: uppercase; letter-spacing: 3px; font-size: 0.85rem; font-weight: 700;">
+                    Galleria / Uptown — Westside High Zone
+                </h3>
+                <p style="font-size: 0.85rem; color: var(--nasa-silver);">Not one of our 5 target school zones, but included because it appeared on Brian's YouTube research list.</p>
+            </div>
+
+            <div class="grid-2 fade-in" style="margin-top: 1.5rem;">
+
+                <!-- 10. Montebello -->
+                <div class="property-card" style="opacity: 0.75;">
+                    <div class="prop-rank">10</div>
+                    <span class="tag" style="background: rgba(167,25,48,0.3); color: var(--nasa-silver);">Above Budget — Reference</span>
+                    <div class="prop-name">Montebello</div>
+                    <div class="prop-detail"><strong>Address:</strong> 1100 Uptown Park Blvd</div>
+                    <div class="prop-detail"><strong>Built:</strong> 2003 &nbsp;|&nbsp; <strong>Floors:</strong> 30 &nbsp;|&nbsp; <strong>Units:</strong> 98</div>
+                    <div class="prop-detail"><strong>Size:</strong> 2,000–4,800+ sqft (only 4 units per floor)</div>
+                    <div class="prop-detail"><strong>Price:</strong> $900K–$3.5M+ (median $1.4M)</div>
+                    <div class="prop-detail"><strong>Schools:</strong> Briargrove Elem (IB PYP) → Grady MS → <strong>Westside High</strong> (Tech Magnet)</div>
+                    <div class="prop-detail"><strong>Why:</strong> Best resale in Houston luxury condos. Only 4 units/floor. Borlenghi pedigree. Heart of Uptown Park dining/retail.</div>
+                </div>
+
+                <!-- Placeholder for balance -->
+                <div class="callout-box" style="display: flex; flex-direction: column; justify-content: center;">
+                    <h3 style="color: var(--tile-blue);">Also on the Radar</h3>
+                    <p><strong>The Bellaire</strong> (7134 Mapleridge) — Boutique gated high-rise in the <strong>Bellaire High</strong> zone. IB + AP. Romeo & Juliet balconies, 10-ft ceilings.</p>
+                    <p style="margin-top: 0.75rem;"><strong>1111 Studewood Place</strong> — Mid-rise in <strong>The Heights</strong>, 22-ft ceilings, designer finishes. Heights High zone for Silas's feeder.</p>
+                </div>
+
+            </div>
+
+            <!-- ─── SUMMARY STAT BOXES ─── -->
+            <div class="tile-divider" style="margin: 3rem 0 1.5rem;"></div>
+
+            <div class="grid-4 fade-in">
+                <div class="stat-box">
+                    <div class="stat-number" style="color: var(--candy-red);">8</div>
+                    <div class="stat-label">Buildings in Lamar HS Zone</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number" style="color: var(--warm-gold);">6</div>
+                    <div class="stat-label">In Budget ($500K–$800K)</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number" style="color: var(--tile-blue);">12</div>
+                    <div class="stat-label">Total Buildings Profiled</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number" style="color: var(--nasa-silver);">IB</div>
+                    <div class="stat-label">Lamar IB → Silas CS Pipeline</div>
+                </div>
+            </div>
+
+            <!-- Google Maps Overview: Inner Loop Condos -->
+            <div class="map-container fade-in" style="margin-top: 2.5rem;">
+                <h3 style="margin-bottom: 1rem;">Luxury Condo Locations — Interactive Map</h3>
+                <iframe
+                    src="https://maps.google.com/maps?q=River+Oaks+Houston+TX+luxury+condos&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                    width="100%" height="450" style="border:0; border-radius: 8px; filter: saturate(0.3) brightness(0.7);"
+                    allowfullscreen="" loading="lazy"
+                    onmouseover="this.style.filter='saturate(1) brightness(1)'"
+                    onmouseout="this.style.filter='saturate(0.3) brightness(0.7)'"
+                ></iframe>
+                <p style="font-size: 0.75rem; color: var(--matte-silver); margin-top: 0.5rem;">
+                    Gold border = in budget ($500K–$800K) &nbsp;|&nbsp; All Lamar-zone buildings are within 3 miles of each other
+                </p>
+            </div>
+
+            <!-- NRG Commute Note -->
+            <div class="callout-box fade-in" style="margin-top: 2rem; border-left: 4px solid var(--battle-red);">
+                <h3>Melissa's NRG Commute from Condo Row</h3>
+                <p>Every Lamar-zone condo is <strong>10–18 minutes</strong> to NRG Stadium via 610 South or Main St. The Parklane (Museum District) is the closest at <strong>~8 minutes</strong>. All buildings have quick Galleria access for Brian's airport runs to IAH (~35 min via 610→I-69).</p>
+            </div>
+
+        </div>
+    </section>
+
+
+<section id="compare">
+    <span class="section-number">15</span>
+    <div class="container">
+        <h2>The Full Comparison</h2>
+        <p>All five school zones, every dimension, side by side.</p>
+
+        <div class="table-wrap fade-in">
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>School</th>
+                        <th>Tech / CS Focus</th>
+                        <th>Melissa → NRG</th>
+                        <th>Brian → IAH</th>
+                        <th>Memorial Park</th>
+                        <th>Housing ($500K–$800K)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="school-col">Memorial High</td>
+                        <td>Software Dev Track <span class="badge badge-best">Best Path</span></td>
+                        <td>~22 min</td>
+                        <td>~30 min</td>
+                        <td>&lt; 5 min <span class="badge badge-best">Best</span></td>
+                        <td>Memorial Condos</td>
+                    </tr>
+                    <tr>
+                        <td class="school-col">Bellaire High</td>
+                        <td>Java/Python → CS III</td>
+                        <td>~10 min <span class="badge badge-best">Best</span></td>
+                        <td>~40 min</td>
+                        <td>~15–20 min</td>
+                        <td>Cottage homes ~$500K–$750K</td>
+                    </tr>
+                    <tr>
+                        <td class="school-col">Lamar High</td>
+                        <td>Cybersecurity / IB Certs</td>
+                        <td>~12 min <span class="badge badge-strong">Strong</span></td>
+                        <td>~35 min</td>
+                        <td>~10 min <span class="badge badge-strong">Strong</span></td>
+                        <td>3525 Sage / 2727 Kirby / Arabella</td>
+                    </tr>
+                    <tr>
+                        <td class="school-col">Heights High</td>
+                        <td>Robotics Labs <span class="badge badge-best">Best Labs</span></td>
+                        <td>~20 min</td>
+                        <td>~28 min <span class="badge badge-best">Best</span></td>
+                        <td>~8–10 min</td>
+                        <td>Modern townhomes $500K–$750K</td>
+                    </tr>
+                    <tr>
+                        <td class="school-col">Carnegie Vanguard</td>
+                        <td>AP CS #1 in TX <span class="badge badge-gold">Elite</span></td>
+                        <td>~18 min</td>
+                        <td>~25 min <span class="badge badge-strong">Strong</span></td>
+                        <td>~10–15 min</td>
+                        <td>Museum District flexible</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<!-- ════════════════════════════════════ -->
+<!-- FOOTER                              -->
+<!-- ════════════════════════════════════ -->
+<footer>
+    <div class="container">
+        <div class="footer-logo"><span class="gothic-h" style="color: var(--candy-red);">H</span>OUSTON <span class="red-text">TEXANS</span></div>
+        <p><span class="gothic-h" style="color: var(--candy-red); font-size:0.85rem;">H</span>-Town Made // Executive Relocation Guide // Audia Family<br>
+        Budget: $500K–$800K &nbsp;|&nbsp; Silas: Tech &amp; CS Focus &nbsp;|&nbsp; 2026 Season<br>
+        Design: Inspired by Carmichael Lynch "H-Town Made" Identity System</p>
+    </div>
+</footer>
+
+<!-- ════════════════════════════════════ -->
+<!-- SCRIPTS                             -->
+<!-- ════════════════════════════════════ -->
+<script>
+    function navScrollTo(selector) {
+        const el = document.querySelector(selector);
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    // Active dot + top nav tracking
+    const sections = document.querySelectorAll('section');
+    const dots = document.querySelectorAll('.dot');
+    const topLinks = document.querySelectorAll('.top-nav-link');
+
+    // Map section IDs to top-nav link indices
+    const sectionIds = Array.from(sections).map(s => s.id);
+    const navOrder = ['hero','texans-history','context','schools','roblox','commute','map-overview','memorial-hood','bellaire-hood','lamar-hood','heights-hood','carnegie-hood','golf','ev-savings','top10','luxury-condos','compare'];
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const sectionId = entry.target.id;
+                // Update dots
+                const dotIndex = Array.from(sections).indexOf(entry.target);
+                dots.forEach(d => d.classList.remove('active'));
+                if (dots[dotIndex]) dots[dotIndex].classList.add('active');
+                // Update top nav
+                const navIndex = navOrder.indexOf(sectionId);
+                topLinks.forEach(l => l.classList.remove('active-link'));
+                if (navIndex >= 0 && topLinks[navIndex]) {
+                    topLinks[navIndex].classList.add('active-link');
+                    // Auto-scroll nav to keep active link visible
+                    topLinks[navIndex].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+                }
+            }
+        });
+    }, { threshold: 0.3 });
+    sections.forEach(s => observer.observe(s));
+
+    // Fade-in
+    const fadeEls = document.querySelectorAll('.fade-in');
+    const fadeObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) entry.target.classList.add('visible');
+        });
+    }, { threshold: 0.1 });
+    fadeEls.forEach(el => fadeObserver.observe(el));
+</script>
+
+</body>
+</html>
